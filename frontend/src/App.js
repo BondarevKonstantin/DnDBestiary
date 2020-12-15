@@ -1,9 +1,16 @@
 import React from "react"
+import { Container } from "react-bootstrap"
+import Header from "./components/Header"
 
 function App() {
   return (
     <>
-      <h1>Welcome to bestiary</h1>
+      <Header />
+      <main className='py-2'>
+        <Container>
+          <h1>Добро пожаловать в бестиарий!</h1>
+        </Container>
+      </main>
     </>
   )
 }

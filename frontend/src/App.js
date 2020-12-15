@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className='py-2'>
+      <main className='py-4'>
         <Container>
           <h1>Добро пожаловать в бестиарий!</h1>
         </Container>

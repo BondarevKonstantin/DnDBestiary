@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import creatures from "../creatures"
 
 const BestiaryScreen = () => {
@@ -10,9 +11,9 @@ const BestiaryScreen = () => {
           {creatures.map((creature) => {
             return (
               <li className='creatures-block-list-item'>
-                <a href={`/creature/${creature._id}`}>
+                <Link to={`/creature/${creature._id}`}>
                   <strong>{creature.name}</strong>
-                </a>
+                </Link>
               </li>
             )
           })}

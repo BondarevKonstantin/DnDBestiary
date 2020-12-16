@@ -1,9 +1,28 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Row, Col, ListGroup, Card, Button } from "react-bootstrap"
+import axios from "axios"
 
 const CreatureScreen = ({ match }) => {
-  const creature = creatures.find((p) => p._id === match.params.id)
+  const [creature, setCreature] = useState({
+    resistance: [],
+    immunityToDamage: [],
+    abilities: [],
+    skills: [],
+    sense: [],
+    languages: [],
+    actions: [],
+  })
+
+  useEffect(() => {
+    const fetchCreature = async () => {
+      const { data } = await axios.get(`/api/creatures/${match.params.id}`)
+
+      setCreature(data)
+    }
+
+    fetchCreature()
+  }, [match])
 
   const addCreatureHandler = () => {
     console.log(4)

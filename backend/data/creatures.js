@@ -110,4 +110,4 @@ const creatures = [
   },
 ]
 
-module.exports = creatures
+export default creatures

@@ -22,7 +22,7 @@ const BestiaryScreen = () => {
         <ul className='creatures-block-list'>
           {creatures.map((creature) => {
             return (
-              <li className='creatures-block-list-item'>
+              <li key={creature._id} className='creatures-block-list-item'>
                 <Link to={`/creature/${creature._id}`}>
                   <strong>{creature.name}</strong>
                 </Link>

@@ -1,0 +1,22 @@
+{
+  "name": "dndbestiary",
+  "version": "1.0.0",
+  "description": "D&D bestiary",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BondarevKonstantin/DnDBestiary.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BondarevKonstantin/DnDBestiary/issues"
+  },
+  "homepage": "https://github.com/BondarevKonstantin/DnDBestiary#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

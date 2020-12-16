@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { Row, Col, ListGroup, Card, Button } from "react-bootstrap"
-import creatures from "../creatures"
 
 const CreatureScreen = ({ match }) => {
   const creature = creatures.find((p) => p._id === match.params.id)

@@ -15,3 +15,13 @@ code {
 .row {
   max-width: 100%;
 }
+
+.tab-remover:hover {
+  color: red;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.tab-remover {
+  color: #aaaaaa;
+}

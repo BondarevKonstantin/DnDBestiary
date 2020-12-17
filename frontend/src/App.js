@@ -1,5 +1,5 @@
 import React from "react"
-import { Redirect, BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import { Row, Col, Card } from "react-bootstrap"
 import Header from "./components/Header"
 import TabsSide from "./components/TabsSide"
@@ -9,7 +9,6 @@ import CreatureScreen from "./screens/CreatureScreen"
 function App() {
   return (
     <Router>
-      <Redirect to='/creatures' />
       <Header />
       <main className='py-4 pl-2'>
         <Row>

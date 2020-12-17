@@ -1,4 +1,4 @@
-import { TABS_ADD_ITEM } from "../constants/tabsConstants"
+import { TABS_ADD_ITEM, TABS_REMOVE_ITEM } from "../constants/tabsConstants"
 
 export const tabsReducer = (state = { tabsItems: [] }, action) => {
   switch (action.type) {
@@ -6,8 +6,6 @@ export const tabsReducer = (state = { tabsItems: [] }, action) => {
       const item = action.payload
 
       const existItem = state.tabsItems.find((x) => x.id === item.id)
-
-      console.log(existItem)
 
       if (existItem) {
         return {
@@ -18,6 +16,11 @@ export const tabsReducer = (state = { tabsItems: [] }, action) => {
           ...state,
           tabsItems: [...state.tabsItems, item],
         }
+      }
+    case TABS_REMOVE_ITEM:
+      return {
+        ...state,
+        tabsItems: state.tabsItems.filter((x) => x.id !== action.payload),
       }
     default:
       return state

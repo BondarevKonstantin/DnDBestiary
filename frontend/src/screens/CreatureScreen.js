@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
 import { Row, Col, ListGroup, Card, Button } from "react-bootstrap"
 import axios from "axios"
 
-const CreatureScreen = ({ match }) => {
+const CreatureScreen = ({ history, match }) => {
   const [creature, setCreature] = useState(
     {
       resistance: [],
@@ -14,7 +13,7 @@ const CreatureScreen = ({ match }) => {
       languages: [],
       actions: [],
     },
-    [match]
+    [history, match]
   )
 
   useEffect(() => {
@@ -110,8 +109,8 @@ const CreatureScreen = ({ match }) => {
               {creature.sense.length !== 0 ? (
                 <Card.Text>
                   <strong>Чувства:</strong>{" "}
-                  {creature.sense.map((ability) => {
-                    return <span> {ability} </span>
+                  {creature.sense.map((sense) => {
+                    return <span> {sense} </span>
                   })}
                 </Card.Text>
               ) : null}

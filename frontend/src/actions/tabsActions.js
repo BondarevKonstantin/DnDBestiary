@@ -7,7 +7,8 @@ export const addToTabs = (id) => async (dispatch, getState) => {
   dispatch({
     type: TABS_ADD_ITEM,
     payload: {
-      ...data,
+      id: data._id,
+      name: data.name,
     },
   })
 

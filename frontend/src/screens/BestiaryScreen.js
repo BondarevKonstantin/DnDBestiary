@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { listCreatures } from "../actions/creatureActions"
+import { addToTabs } from "../actions/tabsActions"
 import { Link } from "react-router-dom"
 
 import Message from "../components/Message"
@@ -11,6 +12,10 @@ const BestiaryScreen = () => {
 
   const creatureList = useSelector((state) => state.creatureList)
   const { loading, error, creatures } = creatureList
+
+  const addToTabsHandler = (item) => {
+    dispatch(addToTabs(item))
+  }
 
   useEffect(() => {
     dispatch(listCreatures())
@@ -34,7 +39,11 @@ const BestiaryScreen = () => {
           <ul className='creatures-block-list'>
             {creatures.map((creature) => {
               return (
-                <li key={creature._id} className='creatures-block-list-item'>
+                <li
+                  key={creature._id}
+                  onClick={() => addToTabsHandler(creature._id)}
+                  className='creatures-block-list-item'
+                >
                   <Link to={`/creature/${creature._id}`}>
                     <strong>{creature.name}</strong>
                   </Link>

@@ -5,7 +5,9 @@ export const tabsReducer = (state = { tabsItems: [] }, action) => {
     case TABS_ADD_ITEM:
       const item = action.payload
 
-      const existItem = state.tabsItems.find((x) => x.product === item.product)
+      const existItem = state.tabsItems.find((x) => x.id === item.id)
+
+      console.log(existItem)
 
       if (existItem) {
         return {

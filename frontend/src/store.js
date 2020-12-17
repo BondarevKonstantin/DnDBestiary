@@ -5,13 +5,21 @@ import {
   creatureListReducer,
   creatureDetailsReducer,
 } from "./reducers/creatureReducers"
+import { tabsReducer } from "./reducers/tabsReducers"
 
 const reducer = combineReducers({
   creatureList: creatureListReducer,
   creatureDetails: creatureDetailsReducer,
+  tabs: tabsReducer,
 })
 
-const initialState = {}
+const tabsItemsFromStorage = localStorage.getItem("tabsItems")
+  ? JSON.parse(localStorage.getItem("tabsItems"))
+  : []
+
+const initialState = {
+  tabs: { tabsItems: tabsItemsFromStorage },
+}
 
 const middleware = [thunk]
 

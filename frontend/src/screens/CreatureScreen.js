@@ -4,15 +4,18 @@ import { Row, Col, ListGroup, Card, Button } from "react-bootstrap"
 import axios from "axios"
 
 const CreatureScreen = ({ match }) => {
-  const [creature, setCreature] = useState({
-    resistance: [],
-    immunityToDamage: [],
-    abilities: [],
-    skills: [],
-    sense: [],
-    languages: [],
-    actions: [],
-  })
+  const [creature, setCreature] = useState(
+    {
+      resistance: [],
+      immunityToDamage: [],
+      abilities: [],
+      skills: [],
+      sense: [],
+      languages: [],
+      actions: [],
+    },
+    [match]
+  )
 
   useEffect(() => {
     const fetchCreature = async () => {

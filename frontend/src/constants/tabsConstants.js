@@ -1,0 +1,2 @@
+export const TABS_ADD_ITEM = "TABS_ADD_ITEM"
+export const TABS_REMOVE_ITEM = "TABS_REMOVE_ITEM"

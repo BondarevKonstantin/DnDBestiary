@@ -83,17 +83,11 @@ const CreatureScreen = ({ match }) => {
             </Col>
             <Col>
               <Card.Text>
-                <strong>Сопротивление урону:</strong>{" "}
-                {creature.resistance.map((type) => {
-                  return <span> {type} </span>
-                })}
+                <strong>Сопротивление урону:</strong> {creature.resistance}
               </Card.Text>
 
               <Card.Text>
-                <strong>Иммунитет к урону:</strong>{" "}
-                {creature.immunityToDamage.map((type) => {
-                  return <span> {type} </span>
-                })}
+                <strong>Иммунитет к урону:</strong> {creature.immunityToDamage}
               </Card.Text>
 
               {creature.abilities.length !== 0 ? (

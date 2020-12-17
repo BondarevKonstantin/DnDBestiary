@@ -18,7 +18,7 @@ const BestiaryScreen = () => {
 
   return (
     <>
-      <h1>Существа</h1>
+      {loading ? <h1>Собираем существ</h1> : <h1>Существа</h1>}
       {loading ? (
         <>
           <h2>

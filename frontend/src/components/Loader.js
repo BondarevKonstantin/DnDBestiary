@@ -12,9 +12,7 @@ const Loader = () => {
         margin: "auto",
         display: "block",
       }}
-    >
-      <h2>Собираю существ...</h2>
-    </Spinner>
+    ></Spinner>
   )
 }
 

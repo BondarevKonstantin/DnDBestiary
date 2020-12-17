@@ -4,6 +4,7 @@ import connectDB from "./config/db.js"
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js"
 
 import creatureRoutes from "./routes/creatureRoutes.js"
+import spellRoutes from "./routes/spellRoutes.js"
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/creatures", creatureRoutes)
+app.use("/api/spells", spellRoutes)
 
 app.use(notFound)
 app.use(errorHandler)

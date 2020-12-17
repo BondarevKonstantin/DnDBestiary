@@ -3,8 +3,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom"
 import { Row, Col, Card } from "react-bootstrap"
 import Header from "./components/Header"
 import TabsSide from "./components/TabsSide"
+import SpellTabsSide from "./components/SpellTabsSide"
 import BestiaryScreen from "./screens/BestiaryScreen"
 import CreatureScreen from "./screens/CreatureScreen"
+import BestiarySpellScreen from "./screens/BestiarySpellScreen"
+import SpellScreen from "./screens/SpellScreen"
 
 function App() {
   return (
@@ -19,10 +22,18 @@ function App() {
                 <TabsSide />
               </Card.Body>
             </Card>
+            <Card className='mt-4'>
+              <Card.Body>
+                <h3 className='text-center'>Ваши заклинания</h3>
+                <SpellTabsSide />
+              </Card.Body>
+            </Card>
           </Col>
           <Col md={8}>
-            <Route path='/creatures' component={BestiaryScreen} exact />
+            <Route path='/creatures' component={BestiaryScreen} />
             <Route path='/creature/:id' component={CreatureScreen} />
+            <Route path='/spells' component={BestiarySpellScreen} />
+            <Route path='/spell/:id' component={SpellScreen} />
           </Col>
         </Row>
       </main>

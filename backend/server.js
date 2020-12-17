@@ -1,7 +1,8 @@
 import express from "express"
 import dotenv from "dotenv"
 import connectDB from "./config/db.js"
-import creatures from "./data/creatures.js"
+
+import creatureRoutes from "./routes/creatureRoutes.js"
 
 dotenv.config()
 
@@ -13,14 +14,7 @@ app.get("/", (req, res) => {
   res.send("API is running")
 })
 
-app.get("/api/creatures", (req, res) => {
-  res.json(creatures)
-})
-
-app.get("/api/creatures/:id", (req, res) => {
-  const creature = creatures.find((c) => c._id === req.params.id)
-  res.json(creature)
-})
+app.use("/api/creatures", creatureRoutes)
 
 const PORT = process.env.PORT || 5000
 

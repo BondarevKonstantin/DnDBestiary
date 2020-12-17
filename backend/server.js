@@ -1,8 +1,11 @@
 import express from "express"
 import dotenv from "dotenv"
+import connectDB from "./config/db.js"
 import creatures from "./data/creatures.js"
 
 dotenv.config()
+
+connectDB()
 
 const app = express()
 

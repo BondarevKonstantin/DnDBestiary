@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { listCreatures } from "../actions/creatureActions"
 import { Link } from "react-router-dom"
 
+import Message from "../components/Message"
+import Loader from "../components/Loader"
+
 const BestiaryScreen = () => {
   const dispatch = useDispatch()
 
@@ -17,9 +20,15 @@ const BestiaryScreen = () => {
     <>
       <h1>Существа</h1>
       {loading ? (
-        <h2>Собираю существ...</h2>
+        <>
+          <h2>
+            <Loader />
+          </h2>
+        </>
       ) : error ? (
-        <h3>{error}</h3>
+        <h3>
+          <Message variant='danger'>{error}</Message>
+        </h3>
       ) : (
         <div className='creatures-block'>
           <ul className='creatures-block-list'>

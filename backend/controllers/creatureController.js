@@ -25,4 +25,19 @@ const getCreaturesById = asyncHandler(async (req, res) => {
   }
 })
 
-export { getCreatures, getCreaturesById }
+// @desc Delete single creature
+// @route DELETE /api/creatures/:id
+// @access Private/admin
+const deleteCreature = asyncHandler(async (req, res) => {
+  const creature = await Creature.findById(req.params.id)
+
+  if (creature) {
+    await creature.remove()
+    res.json({ message: "Product removed" })
+  } else {
+    res.status(404)
+    throw new Error("Product not found")
+  }
+})
+
+export { getCreatures, getCreaturesById, deleteCreature }

@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react"
-import { Row, Col, ListGroup, Card, Button } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+import { Row, Col, ListGroup, Card, Button, ButtonGroup } from "react-bootstrap"
 import axios from "axios"
+import { deleteCreature } from "../actions/creatureActions"
+import { removeFromTabs } from "../actions/tabsActions"
 
 const CreatureScreen = ({ history, match }) => {
+  const dispatch = useDispatch()
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
   const [creature, setCreature] = useState(
     {
       resistance: [],
@@ -26,8 +34,16 @@ const CreatureScreen = ({ history, match }) => {
     fetchCreature()
   }, [match])
 
-  const addCreatureHandler = () => {
+  const setCreatureHandler = () => {
     console.log(4)
+  }
+
+  const removeCreatureHandler = (id) => {
+    if (window.confirm("Это действие нельзя отменить. Продолжить?")) {
+      dispatch(removeFromTabs(id))
+      dispatch(deleteCreature(id))
+      history.push("/")
+    }
   }
 
   return (
@@ -38,13 +54,26 @@ const CreatureScreen = ({ history, match }) => {
             <Card.Title>
               <strong>{creature.name}</strong>
             </Card.Title>
-            <Button
-              variant='outline-dark'
-              size='lg'
-              onClick={addCreatureHandler}
-            >
-              Добавить существо
-            </Button>
+            {userInfo && userInfo.isAdmin ? (
+              <ButtonGroup>
+                <Button
+                  variant='outline-info'
+                  size='lg'
+                  onClick={setCreatureHandler}
+                >
+                  Редактировать существо
+                </Button>
+                <Button
+                  variant='outline-danger'
+                  size='lg'
+                  onClick={() => removeCreatureHandler(creature._id)}
+                >
+                  Удалить существо
+                </Button>
+              </ButtonGroup>
+            ) : (
+              ""
+            )}
           </div>
 
           <Card.Subtitle className='mb-2 text-muted'>{`${creature.size}, ${creature.type}, ${creature.aligment}`}</Card.Subtitle>

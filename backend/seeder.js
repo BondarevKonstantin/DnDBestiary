@@ -1,4 +1,3 @@
-import mongoose from "mongoose"
 import dotenv from "dotenv"
 import creatures from "./data/creatures.js"
 import users from "./data/users.js"

@@ -28,17 +28,20 @@ code {
 
 a {
   color: #333333;
+  transition: 1s;
 }
 
 a:hover {
   color: orange;
-  transition: 1s;
+  transition: 0.5s;
   text-decoration: none;
 }
 
 .action-card {
+  transition: 1s;
   height: 100%;
   text-align: center;
+  box-shadow: 5px -5px 15px 0px #b7b7b7;
 }
 
 .action-card:hover {

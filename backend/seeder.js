@@ -14,7 +14,7 @@ connectDB()
 const importData = async () => {
   try {
     await Creature.deleteMany()
-    await Spell.deleteMany
+    await Spell.deleteMany()
     await User.deleteMany()
 
     await User.insertMany(users)

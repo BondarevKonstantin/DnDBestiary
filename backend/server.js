@@ -5,6 +5,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js"
 
 import creatureRoutes from "./routes/creatureRoutes.js"
 import spellRoutes from "./routes/spellRoutes.js"
+import userRoutes from "./routes/userRoutes.js"
 
 dotenv.config()
 
@@ -12,12 +13,15 @@ connectDB()
 
 const app = express()
 
+app.use(express.json())
+
 app.get("/", (req, res) => {
   res.send("API is running")
 })
 
 app.use("/api/creatures", creatureRoutes)
 app.use("/api/spells", spellRoutes)
+app.use("/api/users", userRoutes)
 
 app.use(notFound)
 app.use(errorHandler)

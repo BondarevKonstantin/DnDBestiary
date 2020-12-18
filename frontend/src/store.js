@@ -8,6 +8,7 @@ import {
 import { spellListReducer, spellDetailsReducer } from "./reducers/spellReducers"
 import { tabsReducer } from "./reducers/tabsReducers"
 import { spellTabsReducer } from "./reducers/spellTabsReducers"
+import { userLoginReducer } from "./reducers/userReducers"
 
 const reducer = combineReducers({
   creatureList: creatureListReducer,
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   spellDetails: spellDetailsReducer,
   tabs: tabsReducer,
   spellTabs: spellTabsReducer,
+  userLogin: userLoginReducer,
 })
 
 const tabsItemsFromStorage = localStorage.getItem("tabsItems")
@@ -26,9 +28,14 @@ const spellTabsItemsFromStorage = localStorage.getItem("spellTabsItems")
   ? JSON.parse(localStorage.getItem("spellTabsItems"))
   : []
 
+const userInfoFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
+  : null
+
 const initialState = {
   tabs: { tabsItems: tabsItemsFromStorage },
   spellTabs: { spellTabsItems: spellTabsItemsFromStorage },
+  userLogin: { userInfo: userInfoFromStorage },
 }
 
 const middleware = [thunk]

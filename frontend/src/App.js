@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { Redirect, BrowserRouter as Router, Route } from "react-router-dom"
 import { Row, Col, Card } from "react-bootstrap"
 import Header from "./components/Header"
 import TabsSide from "./components/TabsSide"
@@ -9,6 +9,7 @@ import CreatureScreen from "./screens/CreatureScreen"
 import BestiarySpellScreen from "./screens/BestiarySpellScreen"
 import SpellScreen from "./screens/SpellScreen"
 import HomeScreen from "./screens/HomeScreen"
+import LoginScreen from "./screens/LoginScreen"
 
 function App() {
   return (
@@ -32,10 +33,12 @@ function App() {
           </Col>
           <Col md={8}>
             <Route path='/' component={HomeScreen} exact />
+            <Route path='/login' component={LoginScreen} exact />
             <Route path='/creatures' component={BestiaryScreen} />
             <Route path='/creature/:id' component={CreatureScreen} />
             <Route path='/spells' component={BestiarySpellScreen} />
             <Route path='/spell/:id' component={SpellScreen} />
+            <Redirect from='*' to='/' />
           </Col>
         </Row>
       </main>

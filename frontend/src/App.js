@@ -8,6 +8,7 @@ import BestiaryScreen from "./screens/BestiaryScreen"
 import CreatureScreen from "./screens/CreatureScreen"
 import BestiarySpellScreen from "./screens/BestiarySpellScreen"
 import SpellScreen from "./screens/SpellScreen"
+import HomeScreen from "./screens/HomeScreen"
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             </Card>
           </Col>
           <Col md={8}>
+            <Route path='/' component={HomeScreen} exact />
             <Route path='/creatures' component={BestiaryScreen} />
             <Route path='/creature/:id' component={CreatureScreen} />
             <Route path='/spells' component={BestiarySpellScreen} />

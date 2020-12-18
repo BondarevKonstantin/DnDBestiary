@@ -25,3 +25,23 @@ code {
 .tab-remover {
   color: #aaaaaa;
 }
+
+a {
+  color: #333333;
+}
+
+a:hover {
+  color: orange;
+  transition: 1s;
+  text-decoration: none;
+}
+
+.action-card {
+  height: 100%;
+  text-align: center;
+}
+
+.action-card:hover {
+  background-color: #ffffef;
+  transition: 0.5s;
+}

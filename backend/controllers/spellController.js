@@ -24,4 +24,19 @@ const getSpellsById = asyncHandler(async (req, res) => {
   }
 })
 
-export { getSpells, getSpellsById }
+// @desc Delete single spell
+// @route DELETE /api/spells/:id
+// @access Private/admin
+const deleteSpell = asyncHandler(async (req, res) => {
+  const spell = await Spell.findById(req.params.id)
+
+  if (spell) {
+    await spell.remove()
+    res.json({ message: "Spell removed" })
+  } else {
+    res.status(404)
+    throw new Error("Spell not found")
+  }
+})
+
+export { getSpells, getSpellsById, deleteSpell }

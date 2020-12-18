@@ -7,6 +7,9 @@ import {
   SPELL_DETAILS_REQUEST,
   SPELL_DETAILS_SUCCESS,
   SPELL_DETAILS_FAIL,
+  SPELL_DELETE_REQUEST,
+  SPELL_DELETE_SUCCESS,
+  SPELL_DELETE_FAIL,
 } from "../constants/spellConstants"
 
 export const listSpells = () => async (dispatch) => {
@@ -43,6 +46,38 @@ export const listSpellsDetails = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: SPELL_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const deleteSpell = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: SPELL_DELETE_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    await axios.delete(`/api/spells/${id}`, config)
+
+    dispatch({
+      type: SPELL_DELETE_SUCCESS,
+    })
+  } catch (error) {
+    dispatch({
+      type: SPELL_DELETE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

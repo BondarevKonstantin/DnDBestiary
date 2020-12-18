@@ -5,6 +5,9 @@ import {
   SPELL_DETAILS_REQUEST,
   SPELL_DETAILS_SUCCESS,
   SPELL_DETAILS_FAIL,
+  SPELL_DELETE_REQUEST,
+  SPELL_DELETE_SUCCESS,
+  SPELL_DELETE_FAIL,
 } from "../constants/spellConstants"
 
 export const spellListReducer = (state = { spells: [] }, action) => {
@@ -39,6 +42,19 @@ export const spellDetailsReducer = (
     case SPELL_DETAILS_SUCCESS:
       return { loading: false, spell: action.payload }
     case SPELL_DETAILS_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const spellDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SPELL_DELETE_REQUEST:
+      return { loading: true }
+    case SPELL_DELETE_SUCCESS:
+      return { loading: false, success: true }
+    case SPELL_DELETE_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state

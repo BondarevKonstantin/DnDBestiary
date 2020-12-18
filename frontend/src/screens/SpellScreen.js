@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react"
-import { Card, Button } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+import { Card, Button, ButtonGroup } from "react-bootstrap"
 import axios from "axios"
+import { deleteSpell } from "../actions/spellActions"
+import { removeSpellFromTabs } from "../actions/spellTabsActions"
 
-const SpellScreen = ({ match }) => {
+const SpellScreen = ({ history, match }) => {
+  const dispatch = useDispatch()
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
   const [spell, setSpell] = useState({})
 
   useEffect(() => {
@@ -13,10 +21,18 @@ const SpellScreen = ({ match }) => {
     }
 
     fetchSpell()
-  }, [match])
+  }, [history, match])
 
-  const addSpellHandler = () => {
+  const setSpellHandler = () => {
     console.log(4)
+  }
+
+  const removeSpellHandler = (id) => {
+    if (window.confirm("Это действие нельзя отменить. Продолжить?")) {
+      dispatch(removeSpellFromTabs(id))
+      dispatch(deleteSpell(id))
+      history.push("/")
+    }
   }
 
   return (
@@ -27,9 +43,26 @@ const SpellScreen = ({ match }) => {
             <Card.Title>
               <strong>{spell.name}</strong>
             </Card.Title>
-            <Button variant='outline-dark' size='lg' onClick={addSpellHandler}>
-              Добавить заклинание
-            </Button>
+            {userInfo && userInfo.isAdmin ? (
+              <ButtonGroup>
+                <Button
+                  variant='outline-info'
+                  size='lg'
+                  onClick={setSpellHandler}
+                >
+                  Редактировать заклинание
+                </Button>
+                <Button
+                  variant='outline-danger'
+                  size='lg'
+                  onClick={() => removeSpellHandler(spell._id)}
+                >
+                  Удалить заклинание
+                </Button>
+              </ButtonGroup>
+            ) : (
+              ""
+            )}
           </div>
 
           <Card.Text>

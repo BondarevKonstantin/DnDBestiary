@@ -1,7 +1,6 @@
-import axios from "axios"
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Form, Button, Card } from "react-bootstrap"
+import { Form, Button } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
@@ -125,7 +124,7 @@ const CreatureEditScreen = ({ match, history }) => {
 
   return (
     <>
-      <Link to='creatures' className='btn btn-light my-3'>
+      <Link to='/creatures' className='btn btn-light my-3'>
         Назад
       </Link>
       <FormContainer>

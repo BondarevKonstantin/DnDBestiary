@@ -20,12 +20,7 @@ const BestiaryScreen = ({ history }) => {
   const { loading, error, creatures } = creatureList
   const { userInfo } = userLogin
 
-  const {
-    loading: loadingCreate,
-    error: errorCreate,
-    success: successCreate,
-    creature: createdCreature,
-  } = creatureCreate
+  const { success: successCreate, creature: createdCreature } = creatureCreate
 
   const addToTabsHandler = (item) => {
     dispatch(addToTabs(item))
@@ -39,7 +34,7 @@ const BestiaryScreen = ({ history }) => {
     dispatch({ type: CREATURE_CREATE_RESET })
 
     if (successCreate) {
-      history.push(`creature/${createdCreature._id}/edit`)
+      history.push(`creature/${createdCreature._id}/edit/new`)
     }
 
     dispatch(listCreatures())

@@ -1,5 +1,5 @@
 import React from "react"
-import { Redirect, BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import { Row, Col, Card } from "react-bootstrap"
 import Header from "./components/Header"
 import TabsSide from "./components/TabsSide"
@@ -37,10 +37,12 @@ function App() {
             <Route path='/login' component={LoginScreen} />
             <Route path='/creatures' component={BestiaryScreen} />
             <Route path='/creature/:id' component={CreatureScreen} exact />
-            <Route path='/creature/:id/edit' component={CreatureEditScreen} />
+            <Route
+              path='/creature/:id/edit/:new?'
+              component={CreatureEditScreen}
+            />
             <Route path='/spells' component={BestiarySpellScreen} />
             <Route path='/spell/:id' component={SpellScreen} />
-            <Redirect from='*' to='/' />
           </Col>
         </Row>
       </main>

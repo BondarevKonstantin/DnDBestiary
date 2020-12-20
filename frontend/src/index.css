@@ -48,3 +48,8 @@ a:hover {
   background-color: #ffffef;
   transition: 0.5s;
 }
+
+.form-add-item {
+  cursor: pointer;
+  width: calc(1.5em + 0.75rem + 2px);
+}

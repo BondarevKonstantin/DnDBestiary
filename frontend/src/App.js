@@ -6,6 +6,7 @@ import TabsSide from "./components/TabsSide"
 import SpellTabsSide from "./components/SpellTabsSide"
 import BestiaryScreen from "./screens/BestiaryScreen"
 import CreatureScreen from "./screens/CreatureScreen"
+import CreatureEditScreen from "./screens/CreatureEditScreen"
 import BestiarySpellScreen from "./screens/BestiarySpellScreen"
 import SpellScreen from "./screens/SpellScreen"
 import HomeScreen from "./screens/HomeScreen"
@@ -33,9 +34,10 @@ function App() {
           </Col>
           <Col md={8}>
             <Route path='/' component={HomeScreen} exact />
-            <Route path='/login' component={LoginScreen} exact />
+            <Route path='/login' component={LoginScreen} />
             <Route path='/creatures' component={BestiaryScreen} />
-            <Route path='/creature/:id' component={CreatureScreen} />
+            <Route path='/creature/:id' component={CreatureScreen} exact />
+            <Route path='/creature/:id/edit' component={CreatureEditScreen} />
             <Route path='/spells' component={BestiarySpellScreen} />
             <Route path='/spell/:id' component={SpellScreen} />
             <Redirect from='*' to='/' />

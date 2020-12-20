@@ -11,18 +11,7 @@ const CreatureScreen = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
-  const [creature, setCreature] = useState(
-    {
-      resistance: [],
-      immunityToDamage: [],
-      abilities: [],
-      skills: [],
-      sense: [],
-      languages: [],
-      actions: [],
-    },
-    [history, match]
-  )
+  const [creature, setCreature] = useState({}, [history, match])
 
   useEffect(() => {
     const fetchCreature = async () => {
@@ -34,8 +23,8 @@ const CreatureScreen = ({ history, match }) => {
     fetchCreature()
   }, [match])
 
-  const setCreatureHandler = () => {
-    console.log(4)
+  const editCreatureHandler = () => {
+    history.push(`/creature/${match.params.id}/edit`)
   }
 
   const removeCreatureHandler = (id) => {
@@ -44,6 +33,23 @@ const CreatureScreen = ({ history, match }) => {
       dispatch(deleteCreature(id))
       history.push("/")
     }
+  }
+
+  const prepareInfo = (data) => {
+    let preparedData = []
+    let splitData = data.split("|")
+    splitData.forEach((element) => {
+      preparedData.push(element.split(":"))
+    })
+    return preparedData
+  }
+
+  let creatureAbilities = ""
+  let creatureActions = ""
+
+  if (creature.abilities && creature.actions) {
+    creatureAbilities = prepareInfo(creature.abilities)
+    creatureActions = prepareInfo(creature.actions)
   }
 
   return (
@@ -59,7 +65,7 @@ const CreatureScreen = ({ history, match }) => {
                 <Button
                   variant='outline-info'
                   size='lg'
-                  onClick={setCreatureHandler}
+                  onClick={editCreatureHandler}
                 >
                   Редактировать существо
                 </Button>
@@ -121,37 +127,17 @@ const CreatureScreen = ({ history, match }) => {
                 <strong>Иммунитет к урону:</strong> {creature.immunityToDamage}
               </Card.Text>
 
-              {creature.abilities.length !== 0 ? (
-                <Card.Text>
-                  <strong>Навыки:</strong>{" "}
-                  {creature.abilities.map((ability) => {
-                    return (
-                      <span>
-                        {" "}
-                        {Object.keys(ability)} +{Object.values(ability)}{" "}
-                      </span>
-                    )
-                  })}
-                </Card.Text>
-              ) : null}
+              <Card.Text>
+                <strong>Спасброски:</strong> {creature.sav}
+              </Card.Text>
 
-              {creature.sense.length !== 0 ? (
-                <Card.Text>
-                  <strong>Чувства:</strong>{" "}
-                  {creature.sense.map((sense) => {
-                    return <span> {sense} </span>
-                  })}
-                </Card.Text>
-              ) : null}
+              <Card.Text>
+                <strong>Навыки:</strong> {creature.skills}
+              </Card.Text>
 
-              {creature.languages.length !== 0 ? (
-                <Card.Text>
-                  <strong>Языки:</strong>{" "}
-                  {creature.languages.map((language) => {
-                    return <span> {language} </span>
-                  })}
-                </Card.Text>
-              ) : null}
+              <Card.Text>
+                <strong>Чувства:</strong> {creature.sense}
+              </Card.Text>
 
               <Card.Text>
                 <strong>Опасность:</strong> {creature.danger}
@@ -160,24 +146,36 @@ const CreatureScreen = ({ history, match }) => {
           </Row>
 
           <h1 className='my-4 text-center'>---Способности---</h1>
-          {creature.skills.map((skill) => {
-            return (
-              <p>
-                <strong>{Object.keys(skill)}: </strong>
-                {Object.values(skill)}
-              </p>
-            )
-          })}
+          {creatureAbilities ? (
+            <>
+              {creatureAbilities.map((ability) => {
+                return (
+                  <p key={`p-ability-${ability[0]}`}>
+                    <strong>{ability[0]}: </strong>
+                    {ability[1]}
+                  </p>
+                )
+              })}
+            </>
+          ) : (
+            ""
+          )}
 
           <h1 className='my-4 text-center'>---Действия---</h1>
-          {creature.actions.map((action) => {
-            return (
-              <p>
-                <strong>{Object.keys(action)}: </strong>
-                {Object.values(action)}
-              </p>
-            )
-          })}
+          {creatureActions ? (
+            <>
+              {creatureActions.map((action) => {
+                return (
+                  <p key={`p-action-${action[0]}`}>
+                    <strong>{action[0]}: </strong>
+                    {action[1]}
+                  </p>
+                )
+              })}
+            </>
+          ) : (
+            ""
+          )}
 
           <h1 className='my-4 text-center'>---Описание---</h1>
           <p>{creature.description}</p>

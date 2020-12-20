@@ -22,27 +22,27 @@ const creatureSchema = mongoose.Schema({
     required: true,
   },
   hits: {
-    type: Number,
+    type: String,
     required: true,
   },
   danger: {
-    type: Number,
+    type: String,
     required: true,
   },
   speed: {
-    type: Number,
+    type: String,
     required: true,
   },
   speedFlying: {
-    type: Number,
+    type: String,
     required: true,
   },
   speedSwim: {
-    type: Number,
+    type: String,
     required: true,
   },
   speedClimb: {
-    type: Number,
+    type: String,
     required: true,
   },
   resistance: {
@@ -52,35 +52,47 @@ const creatureSchema = mongoose.Schema({
     type: String,
   },
   str: {
-    type: Number,
+    type: String,
     required: true,
   },
   dex: {
-    type: Number,
+    type: String,
     required: true,
   },
   con: {
-    type: Number,
+    type: String,
     required: true,
   },
   int: {
-    type: Number,
+    type: String,
     required: true,
   },
   wis: {
-    type: Number,
+    type: String,
     required: true,
   },
   cha: {
-    type: Number,
+    type: String,
     required: true,
   },
-  sav: [],
-  skills: [],
-  abilities: [],
-  sense: [],
-  languages: [],
-  actions: [],
+  sav: {
+    type: String,
+  },
+  skills: {
+    type: String,
+  },
+  abilities: {
+    type: String,
+  },
+  sense: {
+    type: String,
+  },
+  languages: {
+    type: String,
+  },
+  actions: {
+    type: String,
+  },
   description: {
     type: String,
     required: true,

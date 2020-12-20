@@ -4,6 +4,9 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import {
   creatureListReducer,
   creatureDetailsReducer,
+  creatureCreateReducer,
+  creatureDeleteReducer,
+  creatureUpdateReducer,
 } from "./reducers/creatureReducers"
 import { spellListReducer, spellDetailsReducer } from "./reducers/spellReducers"
 import { tabsReducer } from "./reducers/tabsReducers"
@@ -13,6 +16,9 @@ import { userLoginReducer } from "./reducers/userReducers"
 const reducer = combineReducers({
   creatureList: creatureListReducer,
   creatureDetails: creatureDetailsReducer,
+  creatureCreate: creatureCreateReducer,
+  creatureDelete: creatureDeleteReducer,
+  creatureUpdate: creatureUpdateReducer,
   spellList: spellListReducer,
   spellDetails: spellDetailsReducer,
   tabs: tabsReducer,

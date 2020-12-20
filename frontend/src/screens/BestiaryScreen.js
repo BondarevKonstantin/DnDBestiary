@@ -1,29 +1,68 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { listCreatures } from "../actions/creatureActions"
+import { Button } from "react-bootstrap"
+import { listCreatures, createCreature } from "../actions/creatureActions"
 import { addToTabs } from "../actions/tabsActions"
 import { Link } from "react-router-dom"
+
+import { CREATURE_CREATE_RESET } from "../constants/creatureConstants"
 
 import Message from "../components/Message"
 import Loader from "../components/Loader"
 
-const BestiaryScreen = () => {
+const BestiaryScreen = ({ history }) => {
   const dispatch = useDispatch()
 
   const creatureList = useSelector((state) => state.creatureList)
+  const userLogin = useSelector((state) => state.userLogin)
+  const creatureCreate = useSelector((state) => state.creatureCreate)
+
   const { loading, error, creatures } = creatureList
+  const { userInfo } = userLogin
+
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    creature: createdCreature,
+  } = creatureCreate
 
   const addToTabsHandler = (item) => {
     dispatch(addToTabs(item))
   }
 
+  const createCreatureHandler = () => {
+    dispatch(createCreature())
+  }
+
   useEffect(() => {
+    dispatch({ type: CREATURE_CREATE_RESET })
+
+    if (successCreate) {
+      history.push(`creature/${createdCreature._id}/edit`)
+    }
+
     dispatch(listCreatures())
-  }, [dispatch])
+  }, [dispatch, history, successCreate, createdCreature])
 
   return (
     <>
-      {loading ? <h1>Собираем существ</h1> : <h1>Существа</h1>}
+      <div className='d-flex justify-content-between'>
+        {loading ? <h1>Собираем существ</h1> : <h1>Существа</h1>}
+
+        {userInfo && userInfo.isAdmin ? (
+          <Button
+            variant='outline-danger'
+            size='lg'
+            onClick={createCreatureHandler}
+          >
+            Создать существо
+          </Button>
+        ) : (
+          ""
+        )}
+      </div>
+
       {loading ? (
         <>
           <h2>

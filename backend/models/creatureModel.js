@@ -7,43 +7,33 @@ const creatureSchema = mongoose.Schema({
   },
   armorClass: {
     type: String,
-    required: true,
   },
   aligment: {
     type: String,
-    required: true,
   },
   type: {
     type: String,
-    required: true,
   },
   size: {
     type: String,
-    required: true,
   },
   hits: {
     type: String,
-    required: true,
   },
   danger: {
     type: String,
-    required: true,
   },
   speed: {
     type: String,
-    required: true,
   },
   speedFlying: {
     type: String,
-    required: true,
   },
   speedSwim: {
     type: String,
-    required: true,
   },
   speedClimb: {
     type: String,
-    required: true,
   },
   resistance: {
     type: String,
@@ -53,27 +43,21 @@ const creatureSchema = mongoose.Schema({
   },
   str: {
     type: String,
-    required: true,
   },
   dex: {
     type: String,
-    required: true,
   },
   con: {
     type: String,
-    required: true,
   },
   int: {
     type: String,
-    required: true,
   },
   wis: {
     type: String,
-    required: true,
   },
   cha: {
     type: String,
-    required: true,
   },
   sav: {
     type: String,
@@ -95,7 +79,6 @@ const creatureSchema = mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
   },
 })
 

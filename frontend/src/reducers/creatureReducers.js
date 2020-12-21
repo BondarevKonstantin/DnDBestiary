@@ -33,14 +33,7 @@ export const creatureListReducer = (state = { creatures: [] }, action) => {
 
 export const creatureDetailsReducer = (
   state = {
-    creature: {
-      sav: [],
-      abilities: [],
-      skills: [],
-      sense: [],
-      languages: [],
-      actions: [],
-    },
+    creature: {},
   },
   action
 ) => {

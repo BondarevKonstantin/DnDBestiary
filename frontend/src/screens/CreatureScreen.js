@@ -44,12 +44,47 @@ const CreatureScreen = ({ history, match }) => {
     return preparedData
   }
 
-  let creatureAbilities = ""
-  let creatureActions = ""
-
-  if (creature.abilities && creature.actions) {
-    creatureAbilities = prepareInfo(creature.abilities)
-    creatureActions = prepareInfo(creature.actions)
+  const countAddition = (stat) => {
+    switch (Number(stat)) {
+      case 8:
+      case 9:
+        return `${stat} (-1)`
+      case 10:
+      case 11:
+        return `${stat} (0)`
+      case 12:
+      case 13:
+        return `${stat} (+1)`
+      case 14:
+      case 15:
+        return `${stat} (+2)`
+      case 16:
+      case 17:
+        return `${stat} (+3)`
+      case 18:
+      case 19:
+        return `${stat} (+4)`
+      case 20:
+      case 21:
+        return `${stat} (+5)`
+      case 22:
+      case 23:
+        return `${stat} (+6)`
+      case 24:
+      case 25:
+        return `${stat} (+7)`
+      case 26:
+      case 27:
+        return `${stat} (+8)`
+      case 28:
+      case 29:
+        return `${stat} (+9)`
+      case 30:
+      case 31:
+        return `${stat} (+10)`
+      default:
+        return ""
+    }
   }
 
   return (
@@ -82,73 +117,158 @@ const CreatureScreen = ({ history, match }) => {
             )}
           </div>
 
-          <Card.Subtitle className='mb-2 text-muted'>{`${creature.size}, ${creature.type}, ${creature.aligment}`}</Card.Subtitle>
+          <Card.Subtitle className='mb-2 text-muted'>{`${
+            (creature.size && creature.type) ||
+            (creature.size && creature.aligment)
+              ? creature.size + ","
+              : creature.size
+              ? creature.size
+              : ""
+          } ${
+            creature.type && creature.aligment
+              ? creature.type + ","
+              : creature.type
+              ? creature.type
+              : ""
+          } ${creature.aligment ? creature.aligment : ""}`}</Card.Subtitle>
 
-          <Card.Text>
-            <strong>Класс доспеха: </strong>
-            {creature.armorClass}
-          </Card.Text>
+          {creature.armorClass ? (
+            <Card.Text>
+              <strong>Класс доспеха: </strong>
+              {creature.armorClass}
+            </Card.Text>
+          ) : (
+            ""
+          )}
 
-          <Card.Text>
-            <strong>Хиты: </strong>
-            {creature.hits}
-          </Card.Text>
+          {creature.hits ? (
+            <Card.Text>
+              <strong>Хиты: </strong>
+              {creature.hits}
+            </Card.Text>
+          ) : (
+            ""
+          )}
 
-          <Card.Text>
-            <strong>Скорость:</strong>
-            {creature.speed} фт
-            {creature.speedFlying !== 0
-              ? `, В полете ${creature.speedFlying} фт`
-              : ""}
-            {creature.speedSwim !== 0
-              ? `, Плавая ${creature.speedSwim} фт`
-              : ""}
-            {creature.speedClimb !== 0
-              ? `, Карабкаясь ${creature.speedClimb} фт`
-              : ""}
-          </Card.Text>
+          {creature.speed ||
+          creature.speedFlying ||
+          creature.speedSwim ||
+          creature.speedClimb ? (
+            <Card.Text>
+              <strong>Скорость:</strong>
+              {creature.speed} фт
+              {creature.speedFlying !== 0
+                ? `, В полете ${creature.speedFlying} фт`
+                : ""}
+              {creature.speedSwim !== 0
+                ? `, Плавая ${creature.speedSwim} фт`
+                : ""}
+              {creature.speedClimb !== 0
+                ? `, Карабкаясь ${creature.speedClimb} фт`
+                : ""}
+            </Card.Text>
+          ) : (
+            ""
+          )}
+
           <Row>
             <Col md={4}>
               <ListGroup>
-                <ListGroup.Item>Сила: {creature.str} </ListGroup.Item>
-                <ListGroup.Item>Ловкость: {creature.dex} </ListGroup.Item>
-                <ListGroup.Item>Телосложение: {creature.con} </ListGroup.Item>
-                <ListGroup.Item>Интеллект: {creature.int} </ListGroup.Item>
-                <ListGroup.Item>Мудрость: {creature.wis} </ListGroup.Item>
-                <ListGroup.Item>Харизма: {creature.cha} </ListGroup.Item>
+                <ListGroup.Item>
+                  Сила: {countAddition(creature.str)}{" "}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  Ловкость: {countAddition(creature.dex)}{" "}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  Телосложение: {countAddition(creature.con)}{" "}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  Интеллект: {countAddition(creature.int)}{" "}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  Мудрость: {countAddition(creature.wis)}{" "}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  Харизма: {countAddition(creature.cha)}{" "}
+                </ListGroup.Item>
               </ListGroup>
             </Col>
             <Col>
-              <Card.Text>
-                <strong>Сопротивление урону:</strong> {creature.resistance}
-              </Card.Text>
+              {creature.resistance ? (
+                <Card.Text>
+                  <strong>Сопротивление урону:</strong> {creature.resistance}
+                </Card.Text>
+              ) : (
+                ""
+              )}
 
-              <Card.Text>
-                <strong>Иммунитет к урону:</strong> {creature.immunityToDamage}
-              </Card.Text>
+              {creature.immunityToDamage ? (
+                <Card.Text>
+                  <strong>Иммунитет к урону:</strong>{" "}
+                  {creature.immunityToDamage}
+                </Card.Text>
+              ) : (
+                ""
+              )}
 
-              <Card.Text>
-                <strong>Спасброски:</strong> {creature.sav}
-              </Card.Text>
+              {creature.vulnerabilityToDamage ? (
+                <Card.Text>
+                  <strong>Уязвимость к урону:</strong>{" "}
+                  {creature.vulnerabilityToDamage}
+                </Card.Text>
+              ) : (
+                ""
+              )}
 
-              <Card.Text>
-                <strong>Навыки:</strong> {creature.skills}
-              </Card.Text>
+              {creature.immunityToStatus ? (
+                <Card.Text>
+                  <strong>Иммунитет к статусам:</strong>{" "}
+                  {creature.immunityToStatus}
+                </Card.Text>
+              ) : (
+                ""
+              )}
 
-              <Card.Text>
-                <strong>Чувства:</strong> {creature.sense}
-              </Card.Text>
+              {creature.sav ? (
+                <Card.Text>
+                  <strong>Спасброски:</strong> {creature.sav}
+                </Card.Text>
+              ) : (
+                ""
+              )}
 
-              <Card.Text>
-                <strong>Опасность:</strong> {creature.danger}
-              </Card.Text>
+              {creature.skills ? (
+                <Card.Text>
+                  <strong>Навыки:</strong> {creature.skills}
+                </Card.Text>
+              ) : (
+                ""
+              )}
+
+              {creature.sense ? (
+                <Card.Text>
+                  <strong>Чувства:</strong> {creature.sense}
+                </Card.Text>
+              ) : (
+                ""
+              )}
+
+              {creature.danger ? (
+                <Card.Text>
+                  <strong>Опасность:</strong> {creature.danger}
+                </Card.Text>
+              ) : (
+                ""
+              )}
             </Col>
           </Row>
 
-          <h1 className='my-4 text-center'>---Способности---</h1>
-          {creatureAbilities ? (
+          {creature.abilities ? (
             <>
-              {creatureAbilities.map((ability) => {
+              <h1 className='my-4 text-center'>---Способности---</h1>
+
+              {prepareInfo(creature.abilities).map((ability) => {
                 return (
                   <p key={`p-ability-${ability[0]}`}>
                     <strong>{ability[0]}: </strong>
@@ -161,10 +281,11 @@ const CreatureScreen = ({ history, match }) => {
             ""
           )}
 
-          <h1 className='my-4 text-center'>---Действия---</h1>
-          {creatureActions ? (
+          {creature.actions ? (
             <>
-              {creatureActions.map((action) => {
+              <h1 className='my-4 text-center'>---Действия---</h1>
+
+              {prepareInfo(creature.actions).map((action) => {
                 return (
                   <p key={`p-action-${action[0]}`}>
                     <strong>{action[0]}: </strong>
@@ -177,8 +298,57 @@ const CreatureScreen = ({ history, match }) => {
             ""
           )}
 
-          <h1 className='my-4 text-center'>---Описание---</h1>
-          <p>{creature.description}</p>
+          {creature.legendaryActions ? (
+            <>
+              <h1 className='my-4 text-center'>---Легендарные действия---</h1>
+
+              {prepareInfo(creature.legendaryActions).map((action) => {
+                return (
+                  <p key={`p-action-${action[0]}`}>
+                    <strong>{action[0]}: </strong>
+                    {action[1]}
+                  </p>
+                )
+              })}
+            </>
+          ) : (
+            ""
+          )}
+
+          {creature.lair ? (
+            <>
+              <h1 className='my-4 text-center'>---Логово---</h1>
+              <p>{creature.lair}</p>
+            </>
+          ) : (
+            ""
+          )}
+
+          {creature.lairActions ? (
+            <>
+              <h1 className='my-4 text-center'>---Действия логова---</h1>
+
+              {prepareInfo(creature.lairActions).map((action) => {
+                return (
+                  <p key={`p-action-${action[0]}`}>
+                    <strong>{action[0]}: </strong>
+                    {action[1]}
+                  </p>
+                )
+              })}
+            </>
+          ) : (
+            ""
+          )}
+
+          {creature.description ? (
+            <>
+              <h1 className='my-4 text-center'>---Описание---</h1>
+              <p>{creature.description}</p>
+            </>
+          ) : (
+            ""
+          )}
         </Card.Body>
       </Card>
     </>

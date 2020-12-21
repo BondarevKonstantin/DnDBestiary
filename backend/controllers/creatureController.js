@@ -46,31 +46,36 @@ const deleteCreature = asyncHandler(async (req, res) => {
 const createCreature = asyncHandler(async (req, res) => {
   const creature = new Creature({
     name: "Имя",
-    armorClass: "0",
-    aligment: "Воззрение",
-    type: "Тип",
-    size: "Размер",
-    hits: "0",
-    danger: "0",
-    speed: "0",
-    speedFlying: "0",
-    speedSwim: "0",
-    speedClimb: "0",
-    resistance: "Сопротивление",
-    immunityToDamage: "Иммунитет",
-    str: "0",
-    dex: "0",
-    con: "0",
-    int: "0",
-    wis: "0",
-    cha: "0",
-    sav: "Сила: 6 Телосложение: 5",
-    abilities: "Primer: 1 | Primer: 2",
-    skills: "Primer1: Opisanie | Primer2: Opisanie",
-    sense: "Чувство1 | Чувство2",
-    languages: "Общий | Следующий",
+    armorClass: "",
+    aligment: "",
+    type: "",
+    size: "",
+    hits: "",
+    danger: "",
+    speed: "",
+    speedFlying: "",
+    speedSwim: "",
+    speedClimb: "",
+    resistance: "",
+    immunityToDamage: "",
+    vulnerabilityToDamage: "",
+    immunityToStatus: "",
+    str: "10",
+    dex: "10",
+    con: "10",
+    int: "10",
+    wis: "10",
+    cha: "10",
+    sav: "",
+    abilities: "Primer1: Opisanie | Primer2: Opisanie",
+    skills: "",
+    sense: "",
+    languages: "",
     actions: "Action1: Desc | Action2: Desc",
-    description: "Описание существа",
+    legendaryActions: "Action1: Desc | Action2: Desc",
+    lair: "",
+    lairActions: "",
+    description: "",
   })
 
   const createdCreature = await creature.save()
@@ -95,6 +100,8 @@ const updateCreature = asyncHandler(async (req, res) => {
     speedClimb,
     resistance,
     immunityToDamage,
+    vulnerabilityToDamage,
+    immunityToStatus,
     str,
     dex,
     con,
@@ -107,6 +114,9 @@ const updateCreature = asyncHandler(async (req, res) => {
     sense,
     languages,
     actions,
+    legendaryActions,
+    lair,
+    lairActions,
     description,
   } = req.body
 
@@ -126,6 +136,8 @@ const updateCreature = asyncHandler(async (req, res) => {
     creature.speedClimb = speedClimb
     creature.resistance = resistance
     creature.immunityToDamage = immunityToDamage
+    creature.vulnerabilityToDamage = vulnerabilityToDamage
+    creature.immunityToStatus = immunityToStatus
     creature.str = str
     creature.dex = dex
     creature.con = con
@@ -138,6 +150,9 @@ const updateCreature = asyncHandler(async (req, res) => {
     creature.sense = sense
     creature.languages = languages
     creature.actions = actions
+    creature.legendaryActions = legendaryActions
+    creature.lair = lair
+    creature.lairActions = lairActions
     creature.description = description
 
     const updatedCreature = await creature.save()

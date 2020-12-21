@@ -41,6 +41,12 @@ const creatureSchema = mongoose.Schema({
   immunityToDamage: {
     type: String,
   },
+  vulnerabilityToDamage: {
+    type: String,
+  },
+  immunityToStatus: {
+    type: String,
+  },
   str: {
     type: String,
   },
@@ -75,6 +81,15 @@ const creatureSchema = mongoose.Schema({
     type: String,
   },
   actions: {
+    type: String,
+  },
+  legendaryActions: {
+    type: String,
+  },
+  lair: {
+    type: String,
+  },
+  lairActions: {
     type: String,
   },
   description: {

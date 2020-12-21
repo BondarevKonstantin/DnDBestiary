@@ -24,6 +24,8 @@ const CreatureEditScreen = ({ match, history }) => {
   const [speedClimb, setSpeedClimb] = useState("")
   const [resistance, setResistance] = useState("")
   const [immunityToDamage, setImmunityToDamage] = useState("")
+  const [vulnerabilityToDamage, setVulnerabilityToDamage] = useState("")
+  const [immunityToStatus, setImmunityToStatus] = useState("")
   const [str, setStr] = useState("")
   const [dex, setDex] = useState("")
   const [con, setCon] = useState("")
@@ -36,6 +38,9 @@ const CreatureEditScreen = ({ match, history }) => {
   const [sense, setSense] = useState("")
   const [languages, setLanguages] = useState("")
   const [actions, setActions] = useState("")
+  const [legendaryActions, setLegendaryActions] = useState("")
+  const [lair, setLair] = useState("")
+  const [lairActions, setLairActions] = useState("")
   const [description, setDescription] = useState("")
   const dispatch = useDispatch()
 
@@ -70,6 +75,8 @@ const CreatureEditScreen = ({ match, history }) => {
         setSpeedClimb(creature.speedClimb)
         setResistance(creature.resistance)
         setImmunityToDamage(creature.immunityToDamage)
+        setVulnerabilityToDamage(creature.vulnerabilityToDamage)
+        setImmunityToStatus(creature.immunityToStatus)
         setStr(creature.str)
         setDex(creature.dex)
         setCon(creature.con)
@@ -82,6 +89,9 @@ const CreatureEditScreen = ({ match, history }) => {
         setSense(creature.sense)
         setLanguages(creature.languages)
         setActions(creature.actions)
+        setLegendaryActions(creature.legendaryActions)
+        setLair(creature.lair)
+        setLairActions(creature.lairActions)
         setDescription(creature.description)
       }
     }
@@ -105,6 +115,8 @@ const CreatureEditScreen = ({ match, history }) => {
         speedClimb,
         resistance,
         immunityToDamage,
+        vulnerabilityToDamage,
+        immunityToStatus,
         str,
         dex,
         con,
@@ -117,6 +129,9 @@ const CreatureEditScreen = ({ match, history }) => {
         sense,
         languages,
         actions,
+        legendaryActions,
+        lair,
+        lairActions,
         description,
       })
     )
@@ -317,6 +332,26 @@ const CreatureEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
+            <Form.Group controlId='vulnerabilityToDamage'>
+              <Form.Label>Уязвимость к урону</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Введите уязвимость к урону'
+                value={vulnerabilityToDamage}
+                onChange={(e) => setVulnerabilityToDamage(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='immunityToStatus'>
+              <Form.Label>Иммунитеты к статусам</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Введите иммунитеты к статусам'
+                value={immunityToStatus}
+                onChange={(e) => setImmunityToStatus(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
             <Form.Group controlId='cha'>
               <Form.Label>Спасброски</Form.Label>
               <Form.Control
@@ -386,6 +421,39 @@ const CreatureEditScreen = ({ match, history }) => {
                 placeholder='Введите действия'
                 value={actions}
                 onChange={(e) => setActions(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='legendaryActions'>
+              <Form.Label>Легендарные действия</Form.Label>
+              <Form.Control
+                as='textarea'
+                type='text'
+                placeholder='Введите легендарные действия'
+                value={legendaryActions}
+                onChange={(e) => setLegendaryActions(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='lair'>
+              <Form.Label>Логово</Form.Label>
+              <Form.Control
+                as='textarea'
+                type='text'
+                placeholder='Введите описание логова'
+                value={lair}
+                onChange={(e) => setLair(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='lairActions'>
+              <Form.Label>Действия логова</Form.Label>
+              <Form.Control
+                as='textarea'
+                type='text'
+                placeholder='Введите действия логова'
+                value={lairActions}
+                onChange={(e) => setLairActions(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

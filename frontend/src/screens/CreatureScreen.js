@@ -37,46 +37,8 @@ const CreatureScreen = ({ history, match }) => {
   }
 
   const countAddition = (stat) => {
-    switch (Number(stat)) {
-      case 8:
-      case 9:
-        return `${stat} (-1)`
-      case 10:
-      case 11:
-        return `${stat} (0)`
-      case 12:
-      case 13:
-        return `${stat} (+1)`
-      case 14:
-      case 15:
-        return `${stat} (+2)`
-      case 16:
-      case 17:
-        return `${stat} (+3)`
-      case 18:
-      case 19:
-        return `${stat} (+4)`
-      case 20:
-      case 21:
-        return `${stat} (+5)`
-      case 22:
-      case 23:
-        return `${stat} (+6)`
-      case 24:
-      case 25:
-        return `${stat} (+7)`
-      case 26:
-      case 27:
-        return `${stat} (+8)`
-      case 28:
-      case 29:
-        return `${stat} (+9)`
-      case 30:
-      case 31:
-        return `${stat} (+10)`
-      default:
-        return ""
-    }
+    let sign = Math.floor(stat / 2) - 5 > 0 ? "+" : ""
+    return `${stat} (${sign}${Math.floor(stat / 2) - 5})`
   }
 
   return (

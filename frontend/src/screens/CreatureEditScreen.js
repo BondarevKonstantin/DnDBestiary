@@ -246,7 +246,7 @@ const CreatureEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId='speedClimb'>
-              <Form.Label>Скорость ползком</Form.Label>
+              <Form.Label>Скорость лазая</Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Введите скорость ползком'

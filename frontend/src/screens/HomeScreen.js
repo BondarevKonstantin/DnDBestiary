@@ -5,7 +5,9 @@ import { Link } from "react-router-dom"
 const HomeScreen = () => {
   return (
     <Container className='my-5'>
-      <h2 className='text-center mb-5'>Добро пожаловать в DnD Bestiary!</h2>
+      <h2 className='text-center mb-5'>
+        Добро пожаловать в DnD Bestiary by Konstantin Bondarev!
+      </h2>
       <h3 className='text-center mt-8'>Выберите действие:</h3>
       <Row className='mt-5 px-5'>
         <Col md={5}>

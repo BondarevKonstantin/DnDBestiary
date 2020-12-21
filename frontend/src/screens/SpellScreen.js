@@ -4,6 +4,7 @@ import { Card, Button, ButtonGroup } from "react-bootstrap"
 import axios from "axios"
 import { deleteSpell } from "../actions/spellActions"
 import { removeSpellFromTabs } from "../actions/spellTabsActions"
+import parse from "html-react-parser"
 
 const SpellScreen = ({ history, match }) => {
   const dispatch = useDispatch()
@@ -11,7 +12,7 @@ const SpellScreen = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
-  const [spell, setSpell] = useState({})
+  const [spell, setSpell] = useState({}, [history, match])
 
   useEffect(() => {
     const fetchSpell = async () => {
@@ -21,10 +22,10 @@ const SpellScreen = ({ history, match }) => {
     }
 
     fetchSpell()
-  }, [history, match])
+  }, [match])
 
   const setSpellHandler = () => {
-    console.log(4)
+    history.push(`/spell/${match.params.id}/edit`)
   }
 
   const removeSpellHandler = (id) => {
@@ -85,18 +86,28 @@ const SpellScreen = ({ history, match }) => {
             {spell.distance}
           </Card.Text>
 
-          <Card.Text>
-            <strong>Компоненты: </strong>
-            {spell.components}
-          </Card.Text>
+          {spell.components ? (
+            <>
+              <strong>Компоненты: </strong>
+              {parse(spell.components)}
+            </>
+          ) : (
+            ""
+          )}
 
           <Card.Text>
             <strong>Длительность: </strong>
             {spell.duration}
           </Card.Text>
 
-          <h1 className='my-4 text-center'>---Описание---</h1>
-          <p>{spell.description}</p>
+          {spell.description ? (
+            <>
+              <h1 className='my-4 text-center'>---Описание---</h1>
+              {parse(spell.description)}{" "}
+            </>
+          ) : (
+            ""
+          )}
         </Card.Body>
       </Card>
     </>

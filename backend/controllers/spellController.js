@@ -39,4 +39,58 @@ const deleteSpell = asyncHandler(async (req, res) => {
   }
 })
 
-export { getSpells, getSpellsById, deleteSpell }
+// @desc Create a spell
+// @route POST /api/spells
+// @access Private/admin
+const createSpell = asyncHandler(async (req, res) => {
+  const spell = new Spell({
+    name: "Имя",
+    level: "",
+    school: "",
+    timeCast: "",
+    distance: "",
+    components: "",
+    duration: "",
+    description: "",
+  })
+
+  const createdSpell = await spell.save()
+  res.status(201).json(createdSpell)
+})
+
+// @desc Update a spell
+// @route PUT /api/spells/:id
+// @access Private/admin
+const updateSpell = asyncHandler(async (req, res) => {
+  const {
+    name,
+    level,
+    school,
+    timeCast,
+    distance,
+    components,
+    duration,
+    description,
+  } = req.body
+
+  const spell = await Spell.findById(req.params.id)
+
+  if (spell) {
+    spell.name = name
+    spell.level = level
+    spell.school = school
+    spell.timeCast = timeCast
+    spell.distance = distance
+    spell.components = components
+    spell.duration = duration
+    spell.description = description
+
+    const updatedSpell = await spell.save()
+    res.json(updatedSpell)
+  } else {
+    res.status(404)
+    throw new Error("Spell not found")
+  }
+})
+
+export { getSpells, getSpellsById, deleteSpell, createSpell, updateSpell }

@@ -1,29 +1,63 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { listSpells } from "../actions/spellActions"
+import { Button } from "react-bootstrap"
+import { listSpells, createSpell } from "../actions/spellActions"
 import { addSpellToTabs } from "../actions/spellTabsActions"
 import { Link } from "react-router-dom"
+
+import { SPELL_CREATE_RESET } from "../constants/spellConstants"
 
 import Message from "../components/Message"
 import Loader from "../components/Loader"
 
-const BestiarySpellScreen = () => {
+const BestiarySpellScreen = ({ history }) => {
   const dispatch = useDispatch()
 
   const spellList = useSelector((state) => state.spellList)
+  const userLogin = useSelector((state) => state.userLogin)
+  const spellCreate = useSelector((state) => state.spellCreate)
+
   const { loading, error, spells } = spellList
+  const { userInfo } = userLogin
+
+  const { success: successCreate, spell: createdSpell } = spellCreate
 
   const addToTabsHandler = (item) => {
     dispatch(addSpellToTabs(item))
   }
 
+  const createSpellHandler = () => {
+    dispatch(createSpell())
+  }
+
   useEffect(() => {
+    dispatch({ type: SPELL_CREATE_RESET })
+
+    if (successCreate) {
+      history.push(`spell/${createdSpell._id}/edit/new`)
+    }
+
     dispatch(listSpells())
-  }, [dispatch])
+  }, [dispatch, history, successCreate, createdSpell])
 
   return (
     <>
-      {loading ? <h1>Собираем заклинания</h1> : <h1>Заклинания</h1>}
+      <div className='d-flex justify-content-between'>
+        {loading ? <h1>Собираем заклинания</h1> : <h1>Заклинания</h1>}
+
+        {userInfo && userInfo.isAdmin ? (
+          <Button
+            variant='outline-danger'
+            size='lg'
+            onClick={createSpellHandler}
+          >
+            Создать заклинание
+          </Button>
+        ) : (
+          ""
+        )}
+      </div>
+
       {loading ? (
         <>
           <h2>

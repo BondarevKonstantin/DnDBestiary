@@ -9,6 +9,7 @@ import CreatureScreen from "./screens/CreatureScreen"
 import CreatureEditScreen from "./screens/CreatureEditScreen"
 import BestiarySpellScreen from "./screens/BestiarySpellScreen"
 import SpellScreen from "./screens/SpellScreen"
+import SpellEditScreen from "./screens/SpellEditScreen"
 import HomeScreen from "./screens/HomeScreen"
 import LoginScreen from "./screens/LoginScreen"
 
@@ -42,7 +43,8 @@ function App() {
               component={CreatureEditScreen}
             />
             <Route path='/spells' component={BestiarySpellScreen} />
-            <Route path='/spell/:id' component={SpellScreen} />
+            <Route path='/spell/:id' component={SpellScreen} exact />
+            <Route path='/spell/:id/edit/:new?' component={SpellEditScreen} />
           </Col>
         </Row>
       </main>

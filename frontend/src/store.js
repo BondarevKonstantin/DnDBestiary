@@ -8,7 +8,13 @@ import {
   creatureDeleteReducer,
   creatureUpdateReducer,
 } from "./reducers/creatureReducers"
-import { spellListReducer, spellDetailsReducer } from "./reducers/spellReducers"
+import {
+  spellListReducer,
+  spellDetailsReducer,
+  spellCreateReducer,
+  spellDeleteReducer,
+  spellUpdateReducer,
+} from "./reducers/spellReducers"
 import { tabsReducer } from "./reducers/tabsReducers"
 import { spellTabsReducer } from "./reducers/spellTabsReducers"
 import { userLoginReducer } from "./reducers/userReducers"
@@ -21,6 +27,9 @@ const reducer = combineReducers({
   creatureUpdate: creatureUpdateReducer,
   spellList: spellListReducer,
   spellDetails: spellDetailsReducer,
+  spellCreate: spellCreateReducer,
+  spellDelete: spellDeleteReducer,
+  spellUpdate: spellUpdateReducer,
   tabs: tabsReducer,
   spellTabs: spellTabsReducer,
   userLogin: userLoginReducer,

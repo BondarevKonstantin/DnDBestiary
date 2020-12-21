@@ -4,6 +4,7 @@ import { Row, Col, ListGroup, Card, Button, ButtonGroup } from "react-bootstrap"
 import axios from "axios"
 import { deleteCreature } from "../actions/creatureActions"
 import { removeFromTabs } from "../actions/tabsActions"
+import parse from "html-react-parser"
 
 const CreatureScreen = ({ history, match }) => {
   const dispatch = useDispatch()
@@ -33,15 +34,6 @@ const CreatureScreen = ({ history, match }) => {
       dispatch(deleteCreature(id))
       history.push("/")
     }
-  }
-
-  const prepareInfo = (data) => {
-    let preparedData = []
-    let splitData = data.split("|")
-    splitData.forEach((element) => {
-      preparedData.push(element.split(":"))
-    })
-    return preparedData
   }
 
   const countAddition = (stat) => {
@@ -268,14 +260,7 @@ const CreatureScreen = ({ history, match }) => {
             <>
               <h1 className='my-4 text-center'>---Способности---</h1>
 
-              {prepareInfo(creature.abilities).map((ability) => {
-                return (
-                  <p key={`p-ability-${ability[0]}`}>
-                    <strong>{ability[0]}: </strong>
-                    {ability[1]}
-                  </p>
-                )
-              })}
+              {parse(creature.abilities)}
             </>
           ) : (
             ""
@@ -285,14 +270,7 @@ const CreatureScreen = ({ history, match }) => {
             <>
               <h1 className='my-4 text-center'>---Действия---</h1>
 
-              {prepareInfo(creature.actions).map((action) => {
-                return (
-                  <p key={`p-action-${action[0]}`}>
-                    <strong>{action[0]}: </strong>
-                    {action[1]}
-                  </p>
-                )
-              })}
+              {parse(creature.actions)}
             </>
           ) : (
             ""
@@ -302,14 +280,7 @@ const CreatureScreen = ({ history, match }) => {
             <>
               <h1 className='my-4 text-center'>---Легендарные действия---</h1>
 
-              {prepareInfo(creature.legendaryActions).map((action) => {
-                return (
-                  <p key={`p-action-${action[0]}`}>
-                    <strong>{action[0]}: </strong>
-                    {action[1]}
-                  </p>
-                )
-              })}
+              {parse(creature.legendaryActions)}
             </>
           ) : (
             ""
@@ -318,7 +289,7 @@ const CreatureScreen = ({ history, match }) => {
           {creature.lair ? (
             <>
               <h1 className='my-4 text-center'>---Логово---</h1>
-              <p>{creature.lair}</p>
+              {parse(creature.lair)}
             </>
           ) : (
             ""
@@ -328,14 +299,7 @@ const CreatureScreen = ({ history, match }) => {
             <>
               <h1 className='my-4 text-center'>---Действия логова---</h1>
 
-              {prepareInfo(creature.lairActions).map((action) => {
-                return (
-                  <p key={`p-action-${action[0]}`}>
-                    <strong>{action[0]}: </strong>
-                    {action[1]}
-                  </p>
-                )
-              })}
+              {parse(creature.lairActions)}
             </>
           ) : (
             ""
@@ -344,7 +308,7 @@ const CreatureScreen = ({ history, match }) => {
           {creature.description ? (
             <>
               <h1 className='my-4 text-center'>---Описание---</h1>
-              <p>{creature.description}</p>
+              {parse(creature.description)}
             </>
           ) : (
             ""

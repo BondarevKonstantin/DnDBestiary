@@ -8,7 +8,12 @@ import FormContainer from "../components/FormContainer"
 import { listCreatureDetails, updateCreature } from "../actions/creatureActions"
 import { CREATURE_UPDATE_RESET } from "../constants/creatureConstants"
 
+import { CKEditor } from "@ckeditor/ckeditor5-react"
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
+
 const CreatureEditScreen = ({ match, history }) => {
+  const [text, setText] = useState("")
+
   const creatureId = match.params.id
 
   const [name, setName] = useState("")
@@ -404,68 +409,86 @@ const CreatureEditScreen = ({ match, history }) => {
 
             <Form.Group controlId='abilities'>
               <Form.Label>Способности</Form.Label>
-              <Form.Control
-                as='textarea'
-                type='text'
-                placeholder='Введите способности'
-                value={abilities}
-                onChange={(e) => setAbilities(e.target.value)}
-              ></Form.Control>
+              <div className='editor'>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={abilities}
+                  onChange={(event, editor) => {
+                    const data = editor.getData()
+                    setAbilities(data)
+                  }}
+                ></CKEditor>
+              </div>
             </Form.Group>
 
             <Form.Group controlId='actions'>
               <Form.Label>Действия</Form.Label>
-              <Form.Control
-                as='textarea'
-                type='text'
-                placeholder='Введите действия'
-                value={actions}
-                onChange={(e) => setActions(e.target.value)}
-              ></Form.Control>
+              <div className='editor'>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={actions}
+                  onChange={(event, editor) => {
+                    const data = editor.getData()
+                    setActions(data)
+                  }}
+                ></CKEditor>
+              </div>
             </Form.Group>
 
             <Form.Group controlId='legendaryActions'>
               <Form.Label>Легендарные действия</Form.Label>
-              <Form.Control
-                as='textarea'
-                type='text'
-                placeholder='Введите легендарные действия'
-                value={legendaryActions}
-                onChange={(e) => setLegendaryActions(e.target.value)}
-              ></Form.Control>
+              <div className='editor'>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={legendaryActions}
+                  onChange={(event, editor) => {
+                    const data = editor.getData()
+                    setLegendaryActions(data)
+                  }}
+                ></CKEditor>
+              </div>
             </Form.Group>
 
             <Form.Group controlId='lair'>
               <Form.Label>Логово</Form.Label>
-              <Form.Control
-                as='textarea'
-                type='text'
-                placeholder='Введите описание логова'
-                value={lair}
-                onChange={(e) => setLair(e.target.value)}
-              ></Form.Control>
+              <div className='editor'>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={lair}
+                  onChange={(event, editor) => {
+                    const data = editor.getData()
+                    setLair(data)
+                  }}
+                ></CKEditor>
+              </div>
             </Form.Group>
 
             <Form.Group controlId='lairActions'>
               <Form.Label>Действия логова</Form.Label>
-              <Form.Control
-                as='textarea'
-                type='text'
-                placeholder='Введите действия логова'
-                value={lairActions}
-                onChange={(e) => setLairActions(e.target.value)}
-              ></Form.Control>
+              <div className='editor'>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={lairActions}
+                  onChange={(event, editor) => {
+                    const data = editor.getData()
+                    setLairActions(data)
+                  }}
+                ></CKEditor>
+              </div>
             </Form.Group>
 
             <Form.Group controlId='description'>
               <Form.Label>Описание</Form.Label>
-              <Form.Control
-                as='textarea'
-                type='text'
-                placeholder='Введите описание'
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></Form.Control>
+              <div className='editor'>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={description}
+                  onChange={(event, editor) => {
+                    const data = editor.getData()
+                    setDescription(data)
+                  }}
+                ></CKEditor>
+              </div>
             </Form.Group>
 
             <Button type='submit' variant='primary'>

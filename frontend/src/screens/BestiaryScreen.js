@@ -1,6 +1,6 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Button } from "react-bootstrap"
+import { Button, ButtonGroup, Form, Alert } from "react-bootstrap"
 import { listCreatures, createCreature } from "../actions/creatureActions"
 import { addToTabs } from "../actions/tabsActions"
 import { Link } from "react-router-dom"
@@ -9,6 +9,9 @@ import { CREATURE_CREATE_RESET } from "../constants/creatureConstants"
 
 import Message from "../components/Message"
 import Loader from "../components/Loader"
+
+import byField from "../utils/byField"
+import sortItems from "../utils/sortItems"
 
 const BestiaryScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -40,10 +43,32 @@ const BestiaryScreen = ({ history }) => {
     dispatch(listCreatures())
   }, [dispatch, history, successCreate, createdCreature])
 
+  const [creaturesFilter, setCreaturesFilter] = useState("")
+  const [sortingTag, setSortingTag] = useState("danger")
+
   return (
     <>
       <div className='d-flex justify-content-between'>
         {loading ? <h1>Собираем существ</h1> : <h1>Существа</h1>}
+
+        {loading ? (
+          ""
+        ) : (
+          <ButtonGroup size='lg' className='mb-2'>
+            <Button
+              variant='outline-danger'
+              onClick={() => setSortingTag("danger")}
+            >
+              По опасности
+            </Button>
+            <Button
+              variant='outline-info'
+              onClick={() => setSortingTag("name")}
+            >
+              По алфавиту
+            </Button>
+          </ButtonGroup>
+        )}
 
         {userInfo && userInfo.isAdmin ? (
           <Button
@@ -69,23 +94,82 @@ const BestiaryScreen = ({ history }) => {
           <Message variant='danger'>{error}</Message>
         </h3>
       ) : (
-        <div className='creatures-block'>
-          <ul className='creatures-block-list'>
-            {creatures.map((creature) => {
+        <>
+          <Form.Group
+            className='filter mt-2 mb-4'
+            controlId='formBasedCreatureFilter'
+          >
+            <Form.Control
+              size='lg'
+              type='text'
+              placeholder='Введите название существа'
+              onChange={(e) => setCreaturesFilter(e.target.value)}
+            />
+          </Form.Group>
+
+          <div className='creatures-block'>
+            {sortItems(
+              creatures.filter((creature) =>
+                creature.name
+                  .toLowerCase()
+                  .includes(creaturesFilter.toLowerCase())
+              ),
+              sortingTag
+            ).map((groupName) => {
               return (
-                <li
-                  key={creature._id}
-                  onClick={() => addToTabsHandler(creature._id)}
-                  className='creatures-block-list-item'
-                >
-                  <Link to={`/creature/${creature._id}`}>
-                    <strong>{creature.name}</strong>
-                  </Link>
-                </li>
+                <>
+                  <Alert key={groupName} variant='dark'>
+                    {groupName}
+                  </Alert>
+                  <ul key={`ul-${groupName}`} className='creatures-block-list'>
+                    {creatures
+                      .filter((creature) =>
+                        creature.name
+                          .toLowerCase()
+                          .includes(creaturesFilter.toLowerCase())
+                      )
+                      .map((creature) => {
+                        return sortingTag === "danger" ? (
+                          creature.danger === groupName ? (
+                            <li
+                              key={creature._id}
+                              onClick={() => addToTabsHandler(creature._id)}
+                              className='creatures-block-list-item'
+                            >
+                              <Link
+                                key={`link-${creature._id}`}
+                                to={`/creature/${creature._id}`}
+                              >
+                                <strong>{creature.name}</strong>
+                              </Link>
+                            </li>
+                          ) : (
+                            ""
+                          )
+                        ) : creature.name[0].toUpperCase() === groupName ? (
+                          <li
+                            key={creature._id}
+                            onClick={() => addToTabsHandler(creature._id)}
+                            className='creatures-block-list-item'
+                          >
+                            <Link
+                              key={`link-${creature._id}`}
+                              to={`/creature/${creature._id}`}
+                            >
+                              <strong>{creature.name}</strong>
+                            </Link>
+                          </li>
+                        ) : (
+                          ""
+                        )
+                      })
+                      .sort(byField("name"))}
+                  </ul>
+                </>
               )
             })}
-          </ul>
-        </div>
+          </div>
+        </>
       )}
     </>
   )

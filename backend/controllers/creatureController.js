@@ -53,9 +53,6 @@ const createCreature = asyncHandler(async (req, res) => {
     hits: "",
     danger: "",
     speed: "",
-    speedFlying: "",
-    speedSwim: "",
-    speedClimb: "",
     resistance: "",
     immunityToDamage: "",
     vulnerabilityToDamage: "",
@@ -95,9 +92,6 @@ const updateCreature = asyncHandler(async (req, res) => {
     hits,
     danger,
     speed,
-    speedFlying,
-    speedSwim,
-    speedClimb,
     resistance,
     immunityToDamage,
     vulnerabilityToDamage,
@@ -131,9 +125,6 @@ const updateCreature = asyncHandler(async (req, res) => {
     creature.hits = hits
     creature.danger = danger
     creature.speed = speed
-    creature.speedFlying = speedFlying
-    creature.speedSwim = speedSwim
-    creature.speedClimb = speedClimb
     creature.resistance = resistance
     creature.immunityToDamage = immunityToDamage
     creature.vulnerabilityToDamage = vulnerabilityToDamage

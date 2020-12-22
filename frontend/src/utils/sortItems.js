@@ -40,6 +40,10 @@ const sortItems = (items, value) => {
         return a > b ? 1 : -1
       })
       break
+
+    default:
+      console.error("Unexpected result of sortItems.js")
+      break
   }
 
   return arr

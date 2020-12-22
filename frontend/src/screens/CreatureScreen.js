@@ -104,22 +104,10 @@ const CreatureScreen = ({ history, match }) => {
             ""
           )}
 
-          {creature.speed ||
-          creature.speedFlying ||
-          creature.speedSwim ||
-          creature.speedClimb ? (
+          {creature.speed ? (
             <Card.Text>
               <strong>Скорость:</strong>
-              {creature.speed} фт
-              {creature.speedFlying !== 0
-                ? `, В полете ${creature.speedFlying} фт`
-                : ""}
-              {creature.speedSwim !== 0
-                ? `, Плавая ${creature.speedSwim} фт`
-                : ""}
-              {creature.speedClimb !== 0
-                ? `, Карабкаясь ${creature.speedClimb} фт`
-                : ""}
+              {creature.speed}
             </Card.Text>
           ) : (
             ""

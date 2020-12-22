@@ -56,7 +56,7 @@ const BestiarySpellScreen = ({ history }) => {
         ) : (
           <ButtonGroup size='lg' className='mb-2'>
             <Button
-              variant='outline-danger'
+              variant='outline-primary'
               onClick={() => setSortingTag("level")}
             >
               По уровню

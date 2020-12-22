@@ -22,9 +22,6 @@ const CreatureEditScreen = ({ match, history }) => {
   const [hits, setHits] = useState("")
   const [danger, setDanger] = useState("")
   const [speed, setSpeed] = useState("")
-  const [speedFlying, setSpeedFlying] = useState("")
-  const [speedSwim, setSpeedSwim] = useState("")
-  const [speedClimb, setSpeedClimb] = useState("")
   const [resistance, setResistance] = useState("")
   const [immunityToDamage, setImmunityToDamage] = useState("")
   const [vulnerabilityToDamage, setVulnerabilityToDamage] = useState("")
@@ -73,9 +70,6 @@ const CreatureEditScreen = ({ match, history }) => {
         setHits(creature.hits)
         setDanger(creature.danger)
         setSpeed(creature.speed)
-        setSpeedFlying(creature.speedFlying)
-        setSpeedSwim(creature.speedSwim)
-        setSpeedClimb(creature.speedClimb)
         setResistance(creature.resistance)
         setImmunityToDamage(creature.immunityToDamage)
         setVulnerabilityToDamage(creature.vulnerabilityToDamage)
@@ -113,9 +107,6 @@ const CreatureEditScreen = ({ match, history }) => {
         hits,
         danger,
         speed,
-        speedFlying,
-        speedSwim,
-        speedClimb,
         resistance,
         immunityToDamage,
         vulnerabilityToDamage,
@@ -222,36 +213,6 @@ const CreatureEditScreen = ({ match, history }) => {
                 placeholder='Введите скорость'
                 value={speed}
                 onChange={(e) => setSpeed(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='speedFlying'>
-              <Form.Label>Скорость в полете</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Введите скорость в полете'
-                value={speedFlying}
-                onChange={(e) => setSpeedFlying(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='speedSwim'>
-              <Form.Label>Скорость в плавании</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Введите скорость в плавании'
-                value={speedSwim}
-                onChange={(e) => setSpeedSwim(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='speedClimb'>
-              <Form.Label>Скорость лазая</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Введите скорость ползком'
-                value={speedClimb}
-                onChange={(e) => setSpeedClimb(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

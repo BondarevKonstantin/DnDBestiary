@@ -19,7 +19,7 @@ function App() {
       <Header />
       <main className='py-4 pl-2'>
         <Row>
-          <Col lg={2} md={3}>
+          <Col lg={2} md={3} sm={12}>
             <Card>
               <Card.Body>
                 <h3 className='text-center'>Ваши существа</h3>
@@ -33,7 +33,7 @@ function App() {
               </Card.Body>
             </Card>
           </Col>
-          <Col lg={8} md={9}>
+          <Col lg={8} md={9} sm={12}>
             <Route path='/' component={HomeScreen} exact />
             <Route path='/login' component={LoginScreen} />
             <Route path='/creatures' component={BestiaryScreen} />

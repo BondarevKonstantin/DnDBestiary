@@ -26,15 +26,6 @@ const creatureSchema = mongoose.Schema({
   speed: {
     type: String,
   },
-  speedFlying: {
-    type: String,
-  },
-  speedSwim: {
-    type: String,
-  },
-  speedClimb: {
-    type: String,
-  },
   resistance: {
     type: String,
   },

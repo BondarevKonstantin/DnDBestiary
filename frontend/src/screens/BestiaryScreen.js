@@ -128,6 +128,7 @@ const BestiaryScreen = ({ history }) => {
                           .toLowerCase()
                           .includes(creaturesFilter.toLowerCase())
                       )
+                      .sort(byField("name"))
                       .map((creature) => {
                         return sortingTag === "danger" ? (
                           creature.danger === groupName ? (
@@ -140,7 +141,10 @@ const BestiaryScreen = ({ history }) => {
                                 key={`link-${creature._id}`}
                                 to={`/creature/${creature._id}`}
                               >
-                                <strong>{creature.name}</strong>
+                                <strong>
+                                  {creature.name[0].toUpperCase() +
+                                    creature.name.slice(1)}
+                                </strong>
                               </Link>
                             </li>
                           ) : (
@@ -156,14 +160,16 @@ const BestiaryScreen = ({ history }) => {
                               key={`link-${creature._id}`}
                               to={`/creature/${creature._id}`}
                             >
-                              <strong>{creature.name}</strong>
+                              <strong>
+                                {creature.name[0].toUpperCase() +
+                                  creature.name.slice(1)}
+                              </strong>
                             </Link>
                           </li>
                         ) : (
                           ""
                         )
-                      })
-                      .sort(byField("name"))}
+                      })}
                   </ul>
                 </>
               )

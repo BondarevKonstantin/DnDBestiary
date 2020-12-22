@@ -27,6 +27,19 @@ const sortItems = (items, value) => {
         return a > b ? 1 : -1
       })
       break
+
+    case "level":
+      items.forEach((element) => {
+        if (arr.includes(element[value])) {
+          return
+        }
+        arr.push(element[value])
+      })
+
+      arr.sort((a, b) => {
+        return a > b ? 1 : -1
+      })
+      break
   }
 
   return arr

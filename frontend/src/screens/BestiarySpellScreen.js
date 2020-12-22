@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Form } from "react-bootstrap"
+import { Button, Form, ButtonGroup, Alert } from "react-bootstrap"
 import { listSpells, createSpell } from "../actions/spellActions"
 import { addSpellToTabs } from "../actions/spellTabsActions"
 import { Link } from "react-router-dom"
@@ -11,6 +11,7 @@ import Message from "../components/Message"
 import Loader from "../components/Loader"
 
 import byField from "../utils/byField"
+import sortItems from "../utils/sortItems"
 
 const BestiarySpellScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -43,11 +44,31 @@ const BestiarySpellScreen = ({ history }) => {
   }, [dispatch, history, successCreate, createdSpell])
 
   const [spellsFilter, setSpellsFilter] = useState("")
+  const [sortingTag, setSortingTag] = useState("level")
 
   return (
     <>
       <div className='d-flex justify-content-between'>
         {loading ? <h1>Собираем заклинания</h1> : <h1>Заклинания</h1>}
+
+        {loading ? (
+          ""
+        ) : (
+          <ButtonGroup size='lg' className='mb-2'>
+            <Button
+              variant='outline-danger'
+              onClick={() => setSortingTag("level")}
+            >
+              По уровню
+            </Button>
+            <Button
+              variant='outline-info'
+              onClick={() => setSortingTag("name")}
+            >
+              По алфавиту
+            </Button>
+          </ButtonGroup>
+        )}
 
         {userInfo && userInfo.isAdmin ? (
           <Button
@@ -85,27 +106,72 @@ const BestiarySpellScreen = ({ history }) => {
               onChange={(e) => setSpellsFilter(e.target.value)}
             />
           </Form.Group>
+
           <div className='spells-block'>
-            <ul className='spells-block-list'>
-              {spells
-                .filter((spell) =>
-                  spell.name.toLowerCase().includes(spellsFilter.toLowerCase())
-                )
-                .sort(byField("name"))
-                .map((spell) => {
-                  return (
-                    <li
-                      key={spell._id}
-                      onClick={() => addToTabsHandler(spell._id)}
-                      className='spells-block-list-item'
-                    >
-                      <Link to={`/spell/${spell._id}`}>
-                        <strong>{spell.name}</strong>
-                      </Link>
-                    </li>
-                  )
-                })}
-            </ul>
+            {sortItems(
+              spells.filter((spell) =>
+                spell.name.toLowerCase().includes(spellsFilter.toLowerCase())
+              ),
+              sortingTag
+            ).map((groupName) => {
+              return (
+                <>
+                  <Alert key={groupName} variant='dark'>
+                    {groupName}
+                  </Alert>
+                  <ul key={`ul-${groupName}`} className='spells-block-list'>
+                    {spells
+                      .filter((spell) =>
+                        spell.name
+                          .toLowerCase()
+                          .includes(spellsFilter.toLowerCase())
+                      )
+                      .sort(byField("name"))
+                      .map((spell) => {
+                        return sortingTag === "level" ? (
+                          spell.level === groupName ? (
+                            <li
+                              key={spell._id}
+                              onClick={() => addToTabsHandler(spell._id)}
+                              className='spells-block-list-item'
+                            >
+                              <Link
+                                key={`link-${spell._id}`}
+                                to={`/spell/${spell._id}`}
+                              >
+                                <strong>
+                                  {spell.name[0].toUpperCase() +
+                                    spell.name.slice(1)}
+                                </strong>
+                              </Link>
+                            </li>
+                          ) : (
+                            ""
+                          )
+                        ) : spell.name[0].toUpperCase() === groupName ? (
+                          <li
+                            key={spell._id}
+                            onClick={() => addToTabsHandler(spell._id)}
+                            className='spells-block-list-item'
+                          >
+                            <Link
+                              key={`link-${spell._id}`}
+                              to={`/spell/${spell._id}`}
+                            >
+                              <strong>
+                                {spell.name[0].toUpperCase() +
+                                  spell.name.slice(1)}
+                              </strong>
+                            </Link>
+                          </li>
+                        ) : (
+                          ""
+                        )
+                      })}
+                  </ul>
+                </>
+              )
+            })}
           </div>
         </>
       )}

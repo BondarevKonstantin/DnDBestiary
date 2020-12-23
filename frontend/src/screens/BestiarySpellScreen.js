@@ -107,7 +107,7 @@ const BestiarySpellScreen = ({ history }) => {
             />
           </Form.Group>
 
-          <div className='spells-block'>
+          <div className='spells-block items-block'>
             {sortItems(
               spells.filter((spell) =>
                 spell.name.toLowerCase().includes(spellsFilter.toLowerCase())
@@ -117,7 +117,11 @@ const BestiarySpellScreen = ({ history }) => {
               return (
                 <>
                   <Alert key={groupName} variant='dark'>
-                    {groupName}
+                    {sortingTag === "level"
+                      ? groupName === "Заговор"
+                        ? groupName
+                        : "Уровень " + groupName
+                      : groupName}
                   </Alert>
                   <ul key={`ul-${groupName}`} className='spells-block-list'>
                     {spells
@@ -133,7 +137,7 @@ const BestiarySpellScreen = ({ history }) => {
                             <li
                               key={spell._id}
                               onClick={() => addToTabsHandler(spell._id)}
-                              className='spells-block-list-item'
+                              className='spells-block-list-item d-flex justify-content-between align-items-center'
                             >
                               <Link
                                 key={`link-${spell._id}`}
@@ -144,6 +148,10 @@ const BestiarySpellScreen = ({ history }) => {
                                     spell.name.slice(1)}
                                 </strong>
                               </Link>
+                              <i
+                                className='fas fa-plus mr-3 plus'
+                                onClick={() => addToTabsHandler(spell._id)}
+                              ></i>
                             </li>
                           ) : (
                             ""
@@ -152,7 +160,7 @@ const BestiarySpellScreen = ({ history }) => {
                           <li
                             key={spell._id}
                             onClick={() => addToTabsHandler(spell._id)}
-                            className='spells-block-list-item'
+                            className='spells-block-list-item d-flex justify-content-between align-items-center'
                           >
                             <Link
                               key={`link-${spell._id}`}
@@ -163,6 +171,10 @@ const BestiarySpellScreen = ({ history }) => {
                                   spell.name.slice(1)}
                               </strong>
                             </Link>
+                            <i
+                              className='fas fa-plus mr-3 plus'
+                              onClick={() => addToTabsHandler(spell._id)}
+                            ></i>
                           </li>
                         ) : (
                           ""

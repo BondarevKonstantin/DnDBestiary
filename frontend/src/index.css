@@ -53,3 +53,19 @@ a:hover {
   cursor: pointer;
   width: calc(1.5em + 0.75rem + 2px);
 }
+
+.spells-block-list-item:hover,
+.creatures-block-list-item:hover {
+  background-color: #eee;
+  transition: 0.5s;
+}
+
+.items-block {
+  columns: 3;
+}
+
+.plus:hover {
+  cursor: pointer;
+  color: orange;
+  transition: 0.5s;
+}

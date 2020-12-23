@@ -16,7 +16,7 @@ const CreatureEditScreen = ({ match, history }) => {
 
   const [name, setName] = useState("")
   const [armorClass, setArmorClass] = useState("")
-  const [aligment, setAligment] = useState("")
+  const [alignment, setAlignment] = useState("")
   const [type, setType] = useState("")
   const [size, setSize] = useState("")
   const [hits, setHits] = useState("")
@@ -39,9 +39,12 @@ const CreatureEditScreen = ({ match, history }) => {
   const [languages, setLanguages] = useState("")
   const [actions, setActions] = useState("")
   const [legendaryActions, setLegendaryActions] = useState("")
+  const [reaction, setReaction] = useState("")
   const [lair, setLair] = useState("")
   const [lairActions, setLairActions] = useState("")
+  const [lairEffects, setLairEffects] = useState("")
   const [description, setDescription] = useState("")
+  const [add, setAdd] = useState("")
   const dispatch = useDispatch()
 
   const creatureDetails = useSelector((state) => state.creatureDetails)
@@ -64,7 +67,7 @@ const CreatureEditScreen = ({ match, history }) => {
       } else {
         setName(creature.name)
         setArmorClass(creature.armorClass)
-        setAligment(creature.aligment)
+        setAlignment(creature.alignment)
         setType(creature.type)
         setSize(creature.size)
         setHits(creature.hits)
@@ -87,9 +90,11 @@ const CreatureEditScreen = ({ match, history }) => {
         setLanguages(creature.languages)
         setActions(creature.actions)
         setLegendaryActions(creature.legendaryActions)
+        setReaction(creature.reaction)
         setLair(creature.lair)
-        setLairActions(creature.lairActions)
+        setLairEffects(creature.lairEffects)
         setDescription(creature.description)
+        setAdd(creature.add)
       }
     }
   }, [dispatch, history, creatureId, creature, successUpdate])
@@ -101,7 +106,7 @@ const CreatureEditScreen = ({ match, history }) => {
         _id: creatureId,
         name,
         armorClass,
-        aligment,
+        alignment,
         type,
         size,
         hits,
@@ -124,9 +129,12 @@ const CreatureEditScreen = ({ match, history }) => {
         languages,
         actions,
         legendaryActions,
+        reaction,
         lair,
         lairActions,
+        lairEffects,
         description,
+        add,
       })
     )
   }
@@ -176,13 +184,13 @@ const CreatureEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='aligment'>
+            <Form.Group controlId='alignment'>
               <Form.Label>Воззрение</Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Введите воззрение'
-                value={aligment}
-                onChange={(e) => setAligment(e.target.value)}
+                value={alignment}
+                onChange={(e) => setAlignment(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -408,6 +416,20 @@ const CreatureEditScreen = ({ match, history }) => {
               </div>
             </Form.Group>
 
+            <Form.Group controlId='reaction'>
+              <Form.Label>Реакции</Form.Label>
+              <div className='editor'>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={reaction}
+                  onChange={(event, editor) => {
+                    const data = editor.getData()
+                    setReaction(data)
+                  }}
+                ></CKEditor>
+              </div>
+            </Form.Group>
+
             <Form.Group controlId='lair'>
               <Form.Label>Логово</Form.Label>
               <div className='editor'>
@@ -436,6 +458,20 @@ const CreatureEditScreen = ({ match, history }) => {
               </div>
             </Form.Group>
 
+            <Form.Group controlId='lairEffects'>
+              <Form.Label>Эффекты логова</Form.Label>
+              <div className='editor'>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={lairEffects}
+                  onChange={(event, editor) => {
+                    const data = editor.getData()
+                    setLairEffects(data)
+                  }}
+                ></CKEditor>
+              </div>
+            </Form.Group>
+
             <Form.Group controlId='description'>
               <Form.Label>Описание</Form.Label>
               <div className='editor'>
@@ -445,6 +481,20 @@ const CreatureEditScreen = ({ match, history }) => {
                   onChange={(event, editor) => {
                     const data = editor.getData()
                     setDescription(data)
+                  }}
+                ></CKEditor>
+              </div>
+            </Form.Group>
+
+            <Form.Group controlId='add'>
+              <Form.Label>Вариант</Form.Label>
+              <div className='editor'>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={add}
+                  onChange={(event, editor) => {
+                    const data = editor.getData()
+                    setAdd(data)
                   }}
                 ></CKEditor>
               </div>

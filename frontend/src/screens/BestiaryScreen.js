@@ -107,7 +107,7 @@ const BestiaryScreen = ({ history }) => {
             />
           </Form.Group>
 
-          <div className='creatures-block'>
+          <div className='creatures-block items-block'>
             {sortItems(
               creatures.filter((creature) =>
                 creature.name
@@ -135,7 +135,7 @@ const BestiaryScreen = ({ history }) => {
                             <li
                               key={creature._id}
                               onClick={() => addToTabsHandler(creature._id)}
-                              className='creatures-block-list-item'
+                              className='creatures-block-list-item d-flex justify-content-between align-items-center'
                             >
                               <Link
                                 key={`link-${creature._id}`}
@@ -146,6 +146,10 @@ const BestiaryScreen = ({ history }) => {
                                     creature.name.slice(1)}
                                 </strong>
                               </Link>
+                              <i
+                                className='fas fa-plus mr-3 plus'
+                                onClick={() => addToTabsHandler(creature._id)}
+                              ></i>
                             </li>
                           ) : (
                             ""
@@ -154,7 +158,7 @@ const BestiaryScreen = ({ history }) => {
                           <li
                             key={creature._id}
                             onClick={() => addToTabsHandler(creature._id)}
-                            className='creatures-block-list-item'
+                            className='creatures-block-list-item d-flex justify-content-between align-items-center'
                           >
                             <Link
                               key={`link-${creature._id}`}
@@ -165,6 +169,10 @@ const BestiaryScreen = ({ history }) => {
                                   creature.name.slice(1)}
                               </strong>
                             </Link>
+                            <i
+                              className='fas fa-plus mr-3 plus'
+                              onClick={() => addToTabsHandler(creature._id)}
+                            ></i>
                           </li>
                         ) : (
                           ""

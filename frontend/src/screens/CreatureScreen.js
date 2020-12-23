@@ -73,18 +73,18 @@ const CreatureScreen = ({ history, match }) => {
 
           <Card.Subtitle className='mb-2 text-muted'>{`${
             (creature.size && creature.type) ||
-            (creature.size && creature.aligment)
+            (creature.size && creature.alignment)
               ? creature.size + ","
               : creature.size
               ? creature.size
               : ""
           } ${
-            creature.type && creature.aligment
+            creature.type && creature.alignment
               ? creature.type + ","
               : creature.type
               ? creature.type
               : ""
-          } ${creature.aligment ? creature.aligment : ""}`}</Card.Subtitle>
+          } ${creature.alignment ? creature.alignment : ""}`}</Card.Subtitle>
 
           {creature.armorClass ? (
             <Card.Text>
@@ -236,6 +236,16 @@ const CreatureScreen = ({ history, match }) => {
             ""
           )}
 
+          {creature.reaction ? (
+            <>
+              <h1 className='my-4 text-center'>---Реакции---</h1>
+
+              {parse(creature.reaction)}
+            </>
+          ) : (
+            ""
+          )}
+
           {creature.lair ? (
             <>
               <h1 className='my-4 text-center'>---Логово---</h1>
@@ -255,10 +265,29 @@ const CreatureScreen = ({ history, match }) => {
             ""
           )}
 
+          {creature.lairEffects ? (
+            <>
+              <h1 className='my-4 text-center'>---Эффекты логова---</h1>
+
+              {parse(creature.lairEffects)}
+            </>
+          ) : (
+            ""
+          )}
+
           {creature.description ? (
             <>
               <h1 className='my-4 text-center'>---Описание---</h1>
               {parse(creature.description)}
+            </>
+          ) : (
+            ""
+          )}
+
+          {creature.add ? (
+            <>
+              <h1 className='my-4 text-center'>---Вариант---</h1>
+              {parse(creature.add)}
             </>
           ) : (
             ""

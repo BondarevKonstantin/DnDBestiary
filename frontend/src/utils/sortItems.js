@@ -37,6 +37,11 @@ const sortItems = (items, value) => {
       })
 
       arr.sort((a, b) => {
+        if (a.toLowerCase() === "заговор") {
+          return -1
+        } else if (b.toLowerCase() === "заговор") {
+          return 1
+        }
         return a > b ? 1 : -1
       })
       break

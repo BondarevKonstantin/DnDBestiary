@@ -47,7 +47,7 @@ const createCreature = asyncHandler(async (req, res) => {
   const creature = new Creature({
     name: "Имя",
     armorClass: "",
-    aligment: "",
+    alignment: "",
     type: "",
     size: "",
     hits: "",
@@ -70,9 +70,12 @@ const createCreature = asyncHandler(async (req, res) => {
     languages: "",
     actions: "",
     legendaryActions: "",
+    reaction: "",
     lair: "",
     lairActions: "",
+    lairEffects: "",
     description: "",
+    add: "",
   })
 
   const createdCreature = await creature.save()
@@ -86,7 +89,7 @@ const updateCreature = asyncHandler(async (req, res) => {
   const {
     name,
     armorClass,
-    aligment,
+    alignment,
     type,
     size,
     hits,
@@ -109,9 +112,12 @@ const updateCreature = asyncHandler(async (req, res) => {
     languages,
     actions,
     legendaryActions,
+    reaction,
     lair,
     lairActions,
+    lairEffects,
     description,
+    add,
   } = req.body
 
   const creature = await Creature.findById(req.params.id)
@@ -119,7 +125,7 @@ const updateCreature = asyncHandler(async (req, res) => {
   if (creature) {
     creature.armorClass = armorClass
     creature.name = name
-    creature.aligment = aligment
+    creature.alignment = alignment
     creature.type = type
     creature.size = size
     creature.hits = hits
@@ -141,10 +147,13 @@ const updateCreature = asyncHandler(async (req, res) => {
     creature.sense = sense
     creature.languages = languages
     creature.actions = actions
+    creature.reaction = reaction
     creature.legendaryActions = legendaryActions
     creature.lair = lair
     creature.lairActions = lairActions
+    creature.lairEffects = lairEffects
     creature.description = description
+    creature.add = add
 
     const updatedCreature = await creature.save()
     res.json(updatedCreature)

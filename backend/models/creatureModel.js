@@ -8,7 +8,7 @@ const creatureSchema = mongoose.Schema({
   armorClass: {
     type: String,
   },
-  aligment: {
+  alignment: {
     type: String,
   },
   type: {
@@ -77,13 +77,22 @@ const creatureSchema = mongoose.Schema({
   legendaryActions: {
     type: String,
   },
+  reaction: {
+    type: String,
+  },
   lair: {
     type: String,
   },
   lairActions: {
     type: String,
   },
+  lairEffects: {
+    type: String,
+  },
   description: {
+    type: String,
+  },
+  add: {
     type: String,
   },
 })

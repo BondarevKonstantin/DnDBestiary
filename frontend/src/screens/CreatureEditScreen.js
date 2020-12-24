@@ -50,6 +50,8 @@ const CreatureEditScreen = ({ match, history }) => {
   const creatureDetails = useSelector((state) => state.creatureDetails)
   const { loading, error, creature } = creatureDetails
 
+  console.log(creature)
+
   const creatureUpdate = useSelector((state) => state.creatureUpdate)
   const {
     loading: loadingUpdate,
@@ -92,6 +94,7 @@ const CreatureEditScreen = ({ match, history }) => {
         setLegendaryActions(creature.legendaryActions)
         setReaction(creature.reaction)
         setLair(creature.lair)
+        setLairActions(creature.lairActions)
         setLairEffects(creature.lairEffects)
         setDescription(creature.description)
         setAdd(creature.add)
@@ -138,6 +141,8 @@ const CreatureEditScreen = ({ match, history }) => {
       })
     )
   }
+
+  console.log(description)
 
   return (
     <>
@@ -379,7 +384,7 @@ const CreatureEditScreen = ({ match, history }) => {
               <div className='editor'>
                 <CKEditor
                   editor={ClassicEditor}
-                  data={abilities}
+                  data={abilities || ""}
                   onChange={(event, editor) => {
                     const data = editor.getData()
                     setAbilities(data)
@@ -393,7 +398,7 @@ const CreatureEditScreen = ({ match, history }) => {
               <div className='editor'>
                 <CKEditor
                   editor={ClassicEditor}
-                  data={actions}
+                  data={actions || ""}
                   onChange={(event, editor) => {
                     const data = editor.getData()
                     setActions(data)
@@ -407,7 +412,7 @@ const CreatureEditScreen = ({ match, history }) => {
               <div className='editor'>
                 <CKEditor
                   editor={ClassicEditor}
-                  data={legendaryActions}
+                  data={legendaryActions || ""}
                   onChange={(event, editor) => {
                     const data = editor.getData()
                     setLegendaryActions(data)
@@ -421,7 +426,7 @@ const CreatureEditScreen = ({ match, history }) => {
               <div className='editor'>
                 <CKEditor
                   editor={ClassicEditor}
-                  data={reaction}
+                  data={reaction || ""}
                   onChange={(event, editor) => {
                     const data = editor.getData()
                     setReaction(data)
@@ -435,7 +440,7 @@ const CreatureEditScreen = ({ match, history }) => {
               <div className='editor'>
                 <CKEditor
                   editor={ClassicEditor}
-                  data={lair}
+                  data={lair || ""}
                   onChange={(event, editor) => {
                     const data = editor.getData()
                     setLair(data)
@@ -449,7 +454,7 @@ const CreatureEditScreen = ({ match, history }) => {
               <div className='editor'>
                 <CKEditor
                   editor={ClassicEditor}
-                  data={lairActions}
+                  data={lairActions || ""}
                   onChange={(event, editor) => {
                     const data = editor.getData()
                     setLairActions(data)
@@ -463,7 +468,7 @@ const CreatureEditScreen = ({ match, history }) => {
               <div className='editor'>
                 <CKEditor
                   editor={ClassicEditor}
-                  data={lairEffects}
+                  data={lairEffects || ""}
                   onChange={(event, editor) => {
                     const data = editor.getData()
                     setLairEffects(data)
@@ -477,7 +482,7 @@ const CreatureEditScreen = ({ match, history }) => {
               <div className='editor'>
                 <CKEditor
                   editor={ClassicEditor}
-                  data={description}
+                  data={description || ""}
                   onChange={(event, editor) => {
                     const data = editor.getData()
                     setDescription(data)
@@ -491,7 +496,7 @@ const CreatureEditScreen = ({ match, history }) => {
               <div className='editor'>
                 <CKEditor
                   editor={ClassicEditor}
-                  data={add}
+                  data={add || ""}
                   onChange={(event, editor) => {
                     const data = editor.getData()
                     setAdd(data)

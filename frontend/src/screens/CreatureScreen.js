@@ -106,7 +106,7 @@ const CreatureScreen = ({ history, match }) => {
 
           {creature.speed ? (
             <Card.Text>
-              <strong>Скорость:</strong>
+              <strong>Скорость: </strong>
               {creature.speed}
             </Card.Text>
           ) : (

@@ -117,22 +117,22 @@ const CreatureScreen = ({ history, match }) => {
             <Col md={4}>
               <ListGroup>
                 <ListGroup.Item>
-                  Сила: {countAddition(creature.str)}{" "}
+                  <strong>Сила:</strong> {countAddition(creature.str)}{" "}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  Ловкость: {countAddition(creature.dex)}{" "}
+                  <strong>Ловкость:</strong> {countAddition(creature.dex)}{" "}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  Телосложение: {countAddition(creature.con)}{" "}
+                  <strong>Телосложение:</strong> {countAddition(creature.con)}{" "}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  Интеллект: {countAddition(creature.int)}{" "}
+                  <strong>Интеллект:</strong> {countAddition(creature.int)}{" "}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  Мудрость: {countAddition(creature.wis)}{" "}
+                  <strong>Мудрость:</strong> {countAddition(creature.wis)}{" "}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  Харизма: {countAddition(creature.cha)}{" "}
+                  <strong>Харизма:</strong> {countAddition(creature.cha)}{" "}
                 </ListGroup.Item>
               </ListGroup>
             </Col>

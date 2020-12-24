@@ -45,6 +45,7 @@ const BestiaryScreen = ({ history }) => {
 
   const [creaturesFilter, setCreaturesFilter] = useState("")
   const [sortingTag, setSortingTag] = useState("danger")
+  const [columns, setColumns] = useState(3)
 
   return (
     <>
@@ -103,11 +104,21 @@ const BestiaryScreen = ({ history }) => {
               size='lg'
               type='text'
               placeholder='Введите название существа'
-              onChange={(e) => setCreaturesFilter(e.target.value)}
+              onChange={(e) => {
+                setCreaturesFilter(e.target.value)
+                if (e.target.value.length > 1) {
+                  setColumns(1)
+                } else {
+                  setColumns(3)
+                }
+              }}
             />
           </Form.Group>
 
-          <div className='creatures-block items-block'>
+          <div
+            className='creatures-block items-block'
+            style={{ columns: columns }}
+          >
             {sortItems(
               creatures.filter((creature) =>
                 creature.name

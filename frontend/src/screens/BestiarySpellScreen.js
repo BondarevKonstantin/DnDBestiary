@@ -45,6 +45,7 @@ const BestiarySpellScreen = ({ history }) => {
 
   const [spellsFilter, setSpellsFilter] = useState("")
   const [sortingTag, setSortingTag] = useState("level")
+  const [columns, setColumns] = useState(3)
 
   return (
     <>
@@ -103,11 +104,21 @@ const BestiarySpellScreen = ({ history }) => {
               size='lg'
               type='text'
               placeholder='Введите название заклинания'
-              onChange={(e) => setSpellsFilter(e.target.value)}
+              onChange={(e) => {
+                setSpellsFilter(e.target.value)
+                if (e.target.value.length > 1) {
+                  setColumns(1)
+                } else {
+                  setColumns(3)
+                }
+              }}
             />
           </Form.Group>
 
-          <div className='spells-block items-block'>
+          <div
+            className='spells-block items-block'
+            style={{ columns: columns }}
+          >
             {sortItems(
               spells.filter((spell) =>
                 spell.name.toLowerCase().includes(spellsFilter.toLowerCase())

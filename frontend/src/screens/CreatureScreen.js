@@ -41,6 +41,8 @@ const CreatureScreen = ({ history, match }) => {
     return `${stat} (${sign}${Math.floor(stat / 2) - 5})`
   }
 
+  console.log(creature)
+
   return (
     <>
       <Card>
@@ -144,7 +146,6 @@ const CreatureScreen = ({ history, match }) => {
               ) : (
                 ""
               )}
-
               {creature.immunityToDamage ? (
                 <Card.Text>
                   <strong>Иммунитет к урону:</strong>{" "}
@@ -153,7 +154,6 @@ const CreatureScreen = ({ history, match }) => {
               ) : (
                 ""
               )}
-
               {creature.vulnerabilityToDamage ? (
                 <Card.Text>
                   <strong>Уязвимость к урону:</strong>{" "}
@@ -162,7 +162,6 @@ const CreatureScreen = ({ history, match }) => {
               ) : (
                 ""
               )}
-
               {creature.immunityToStatus ? (
                 <Card.Text>
                   <strong>Иммунитет к статусам:</strong>{" "}
@@ -171,7 +170,6 @@ const CreatureScreen = ({ history, match }) => {
               ) : (
                 ""
               )}
-
               {creature.sav ? (
                 <Card.Text>
                   <strong>Спасброски:</strong> {creature.sav}
@@ -179,7 +177,6 @@ const CreatureScreen = ({ history, match }) => {
               ) : (
                 ""
               )}
-
               {creature.skills ? (
                 <Card.Text>
                   <strong>Навыки:</strong> {creature.skills}
@@ -187,7 +184,6 @@ const CreatureScreen = ({ history, match }) => {
               ) : (
                 ""
               )}
-
               {creature.sense ? (
                 <Card.Text>
                   <strong>Чувства:</strong> {creature.sense}
@@ -195,10 +191,17 @@ const CreatureScreen = ({ history, match }) => {
               ) : (
                 ""
               )}
-
               {creature.danger ? (
                 <Card.Text>
                   <strong>Опасность:</strong> {creature.danger}
+                </Card.Text>
+              ) : (
+                ""
+              )}
+
+              {creature.source ? (
+                <Card.Text>
+                  <strong>Источник:</strong> {creature.source}
                 </Card.Text>
               ) : (
                 ""

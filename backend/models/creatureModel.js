@@ -23,6 +23,9 @@ const creatureSchema = mongoose.Schema({
   danger: {
     type: String,
   },
+  source: {
+    type: String,
+  },
   speed: {
     type: String,
   },

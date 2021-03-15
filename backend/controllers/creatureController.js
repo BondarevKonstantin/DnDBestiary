@@ -52,6 +52,7 @@ const createCreature = asyncHandler(async (req, res) => {
     size: "",
     hits: "",
     danger: "",
+    source: "",
     speed: "",
     resistance: "",
     immunityToDamage: "",
@@ -94,6 +95,7 @@ const updateCreature = asyncHandler(async (req, res) => {
     size,
     hits,
     danger,
+    source,
     speed,
     resistance,
     immunityToDamage,
@@ -130,6 +132,7 @@ const updateCreature = asyncHandler(async (req, res) => {
     creature.size = size
     creature.hits = hits
     creature.danger = danger
+    creature.source = source
     creature.speed = speed
     creature.resistance = resistance
     creature.immunityToDamage = immunityToDamage

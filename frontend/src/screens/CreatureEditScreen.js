@@ -21,6 +21,7 @@ const CreatureEditScreen = ({ match, history }) => {
   const [size, setSize] = useState("")
   const [hits, setHits] = useState("")
   const [danger, setDanger] = useState("")
+  const [source, setSource] = useState("")
   const [speed, setSpeed] = useState("")
   const [resistance, setResistance] = useState("")
   const [immunityToDamage, setImmunityToDamage] = useState("")
@@ -74,6 +75,7 @@ const CreatureEditScreen = ({ match, history }) => {
         setSize(creature.size)
         setHits(creature.hits)
         setDanger(creature.danger)
+        setSource(creature.source)
         setSpeed(creature.speed)
         setResistance(creature.resistance)
         setImmunityToDamage(creature.immunityToDamage)
@@ -114,6 +116,7 @@ const CreatureEditScreen = ({ match, history }) => {
         size,
         hits,
         danger,
+        source,
         speed,
         resistance,
         immunityToDamage,
@@ -376,6 +379,16 @@ const CreatureEditScreen = ({ match, history }) => {
                 placeholder='Введите опасность'
                 value={danger}
                 onChange={(e) => setDanger(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='source'>
+              <Form.Label>Источник</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Введите источник'
+                value={source}
+                onChange={(e) => setSource(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

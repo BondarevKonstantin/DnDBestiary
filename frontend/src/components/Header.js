@@ -37,6 +37,18 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
 
+              <LinkContainer to='/'>
+                <Nav.Link>
+                  <i className='fas fa-book'></i> Магические предметы
+                </Nav.Link>
+              </LinkContainer>
+
+              <LinkContainer to='/'>
+                <Nav.Link>
+                  <i className='fas fa-book'></i> Кодекс
+                </Nav.Link>
+              </LinkContainer>
+
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
                   {/* <LinkContainer to='/profile'>

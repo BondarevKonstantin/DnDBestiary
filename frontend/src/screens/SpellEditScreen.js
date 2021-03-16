@@ -17,6 +17,7 @@ const SpellEditScreen = ({ match, history }) => {
   const [name, setName] = useState("")
   const [level, setLevel] = useState("")
   const [school, setSchool] = useState("")
+  const [source, setSource] = useState("")
   const [timeCast, setTimeCast] = useState("")
   const [distance, setDistance] = useState("")
   const [components, setComponents] = useState("")
@@ -45,6 +46,7 @@ const SpellEditScreen = ({ match, history }) => {
         setName(spell.name)
         setLevel(spell.level)
         setSchool(spell.school)
+        setSource(spell.source)
         setTimeCast(spell.timeCast)
         setDistance(spell.distance)
         setComponents(spell.components)
@@ -62,6 +64,7 @@ const SpellEditScreen = ({ match, history }) => {
         name,
         level,
         school,
+        source,
         timeCast,
         distance,
         components,
@@ -113,6 +116,16 @@ const SpellEditScreen = ({ match, history }) => {
                 placeholder='Введите школу заклинания'
                 value={school}
                 onChange={(e) => setSchool(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='source'>
+              <Form.Label>Источник</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Введите источник'
+                value={source}
+                onChange={(e) => setSource(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

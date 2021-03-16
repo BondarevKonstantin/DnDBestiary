@@ -11,12 +11,16 @@ const spellSchema = mongoose.Schema({
   school: {
     type: String,
   },
+  source: {
+    type: String,
+  },
   timeCast: {
     type: String,
   },
   distance: {
     type: String,
   },
+
   components: {
     type: String,
   },

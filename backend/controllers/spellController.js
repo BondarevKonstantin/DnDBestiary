@@ -47,6 +47,7 @@ const createSpell = asyncHandler(async (req, res) => {
     name: "Имя",
     level: "",
     school: "",
+    source: "",
     timeCast: "",
     distance: "",
     components: "",
@@ -66,6 +67,7 @@ const updateSpell = asyncHandler(async (req, res) => {
     name,
     level,
     school,
+    source,
     timeCast,
     distance,
     components,
@@ -79,6 +81,7 @@ const updateSpell = asyncHandler(async (req, res) => {
     spell.name = name
     spell.level = level
     spell.school = school
+    spell.source = source
     spell.timeCast = timeCast
     spell.distance = distance
     spell.components = components

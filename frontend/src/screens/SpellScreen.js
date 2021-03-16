@@ -67,6 +67,11 @@ const SpellScreen = ({ history, match }) => {
           </div>
 
           <Card.Text>
+            <strong>Источник: </strong>
+            {spell.source}
+          </Card.Text>
+
+          <Card.Text>
             <strong>Уровень: </strong>
             {spell.level}
           </Card.Text>

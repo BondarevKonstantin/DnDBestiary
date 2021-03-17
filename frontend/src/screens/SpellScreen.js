@@ -101,6 +101,7 @@ const SpellScreen = ({ history, match }) => {
           )}
 
           <Card.Text>
+            <br></br>
             <strong>Длительность: </strong>
             {spell.duration}
           </Card.Text>

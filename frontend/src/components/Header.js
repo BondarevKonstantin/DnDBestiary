@@ -37,14 +37,14 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
 
-              <LinkContainer to='/'>
-                <Nav.Link>
+              <LinkContainer to='/items'>
+                <Nav.Link disabled active={false}>
                   <i className='fas fa-book'></i> Магические предметы
                 </Nav.Link>
               </LinkContainer>
 
-              <LinkContainer to='/'>
-                <Nav.Link>
+              <LinkContainer to='/kodex'>
+                <Nav.Link disabled>
                   <i className='fas fa-book'></i> Кодекс
                 </Nav.Link>
               </LinkContainer>

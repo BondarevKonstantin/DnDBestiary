@@ -15,8 +15,16 @@ import {
   spellDeleteReducer,
   spellUpdateReducer,
 } from "./reducers/spellReducers"
+import {
+  itemListReducer,
+  itemDetailsReducer,
+  itemCreateReducer,
+  itemDeleteReducer,
+  itemUpdateReducer,
+} from "./reducers/itemReducers"
 import { tabsReducer } from "./reducers/tabsReducers"
 import { spellTabsReducer } from "./reducers/spellTabsReducers"
+import { itemTabsReducer } from "./reducers/itemTabsReducers"
 import { userLoginReducer } from "./reducers/userReducers"
 
 const reducer = combineReducers({
@@ -30,8 +38,14 @@ const reducer = combineReducers({
   spellCreate: spellCreateReducer,
   spellDelete: spellDeleteReducer,
   spellUpdate: spellUpdateReducer,
+  itemList: itemListReducer,
+  itemDetails: itemDetailsReducer,
+  itemCreate: itemCreateReducer,
+  itemDelete: itemDeleteReducer,
+  itemUpdate: itemUpdateReducer,
   tabs: tabsReducer,
   spellTabs: spellTabsReducer,
+  itemTabs: itemTabsReducer,
   userLogin: userLoginReducer,
 })
 
@@ -43,6 +57,10 @@ const spellTabsItemsFromStorage = localStorage.getItem("spellTabsItems")
   ? JSON.parse(localStorage.getItem("spellTabsItems"))
   : []
 
+const itemTabsItemsFromStorage = localStorage.getItem("itemTabsItems")
+  ? JSON.parse(localStorage.getItem("itemTabsItems"))
+  : []
+
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null
@@ -50,6 +68,7 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
 const initialState = {
   tabs: { tabsItems: tabsItemsFromStorage },
   spellTabs: { spellTabsItems: spellTabsItemsFromStorage },
+  itemTabs: { itemTabsItems: itemTabsItemsFromStorage },
   userLogin: { userInfo: userInfoFromStorage },
 }
 

@@ -4,12 +4,16 @@ import { Row, Col, Card } from "react-bootstrap"
 import Header from "./components/Header"
 import TabsSide from "./components/TabsSide"
 import SpellTabsSide from "./components/SpellTabsSide"
+import ItemTabsSide from "./components/ItemTabsSide"
 import BestiaryScreen from "./screens/BestiaryScreen"
 import CreatureScreen from "./screens/CreatureScreen"
 import CreatureEditScreen from "./screens/CreatureEditScreen"
 import BestiarySpellScreen from "./screens/BestiarySpellScreen"
 import SpellScreen from "./screens/SpellScreen"
 import SpellEditScreen from "./screens/SpellEditScreen"
+import BestiaryItemScreen from "./screens/BestiaryItemScreen"
+import ItemScreen from "./screens/ItemScreen"
+import ItemEditScreen from "./screens/ItemEditScreen"
 import HomeScreen from "./screens/HomeScreen"
 import LoginScreen from "./screens/LoginScreen"
 
@@ -32,6 +36,12 @@ function App() {
                 <SpellTabsSide />
               </Card.Body>
             </Card>
+            <Card className='mt-4'>
+              <Card.Body>
+                <h3 className='text-center'>Ваши волшебные предметы</h3>
+                <ItemTabsSide />
+              </Card.Body>
+            </Card>
           </Col>
           <Col lg={8} md={9} sm={12}>
             <Route path='/' component={HomeScreen} exact />
@@ -45,6 +55,10 @@ function App() {
             <Route path='/spells' component={BestiarySpellScreen} />
             <Route path='/spell/:id' component={SpellScreen} exact />
             <Route path='/spell/:id/edit/:new?' component={SpellEditScreen} />
+
+            <Route path='/items' component={BestiaryItemScreen} />
+            <Route path='/item/:id' component={ItemScreen} exact />
+            <Route path='/item/:id/edit/:new?' component={ItemEditScreen} />
           </Col>
         </Row>
       </main>

@@ -38,7 +38,7 @@ const Header = () => {
               </LinkContainer>
 
               <LinkContainer to='/items'>
-                <Nav.Link disabled active={false}>
+                <Nav.Link>
                   <i className='fas fa-book'></i> Магические предметы
                 </Nav.Link>
               </LinkContainer>

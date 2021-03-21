@@ -7,6 +7,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js"
 import creatureRoutes from "./routes/creatureRoutes.js"
 import spellRoutes from "./routes/spellRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
+import itemRoutes from "./routes/itemRoutes.js"
 
 dotenv.config()
 
@@ -19,6 +20,7 @@ app.use(express.json())
 app.use("/api/creatures", creatureRoutes)
 app.use("/api/spells", spellRoutes)
 app.use("/api/users", userRoutes)
+app.use("/api/items", itemRoutes)
 
 const __dirname = path.resolve()
 

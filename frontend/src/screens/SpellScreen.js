@@ -92,25 +92,24 @@ const SpellScreen = ({ history, match }) => {
           </Card.Text>
 
           {spell.components ? (
-            <>
+            <Card.Text>
               <strong>Компоненты: </strong>
               {parse(spell.components)}
-            </>
+            </Card.Text>
           ) : (
             ""
           )}
 
           <Card.Text>
-            <br></br>
             <strong>Длительность: </strong>
             {spell.duration}
           </Card.Text>
 
           {spell.description ? (
-            <>
+            <Card.Text>
               <h1 className='my-4 text-center'>---Описание---</h1>
               {parse(spell.description)}{" "}
-            </>
+            </Card.Text>
           ) : (
             ""
           )}

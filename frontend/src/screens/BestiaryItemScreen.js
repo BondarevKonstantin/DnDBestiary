@@ -67,7 +67,7 @@ const BestiaryItemScreen = ({ history }) => {
               По названию
             </Button>
             <Button
-              variant='outline-info'
+              variant='outline-dark'
               onClick={() => setSortingTag("rarity")}
             >
               По редкости
@@ -140,8 +140,8 @@ const BestiaryItemScreen = ({ history }) => {
                       )
                       .sort(byField("name"))
                       .map((item) => {
-                        return sortingTag === "level" ? (
-                          item.level === groupName ? (
+                        return sortingTag === "rarity" ? (
+                          item.rarity === groupName ? (
                             <li
                               key={item._id}
                               onClick={() => addToTabsHandler(item._id)}

@@ -15,14 +15,12 @@ const ItemEditScreen = ({ match, history }) => {
   const itemId = match.params.id
 
   const [name, setName] = useState("")
-  const [level, setLevel] = useState("")
-  const [school, setSchool] = useState("")
+  const [type, setType] = useState("")
+  const [typeAdditions, setTypeAdditions] = useState("")
   const [source, setSource] = useState("")
-  const [timeCast, setTimeCast] = useState("")
-  const [distance, setDistance] = useState("")
-  const [components, setComponents] = useState("")
-  const [duration, setDuration] = useState("")
-  const [description, setDescription] = useState("")
+  const [rarity, setRarity] = useState("")
+  const [text, setText] = useState("")
+  const [attunement, setAttunement] = useState("")
   const dispatch = useDispatch()
 
   const itemDetails = useSelector((state) => state.itemDetails)
@@ -44,14 +42,12 @@ const ItemEditScreen = ({ match, history }) => {
         dispatch(listItemDetails(itemId))
       } else {
         setName(item.name)
-        setLevel(item.level)
-        setSchool(item.school)
+        setType(item.type)
+        setTypeAdditions(item.typeAdditions)
         setSource(item.source)
-        setTimeCast(item.timeCast)
-        setDistance(item.distance)
-        setComponents(item.components)
-        setDuration(item.duration)
-        setDescription(item.description)
+        setRarity(item.rarity)
+        setText(item.text)
+        setAttunement(item.attunement)
       }
     }
   }, [dispatch, history, itemId, item, successUpdate])
@@ -62,14 +58,12 @@ const ItemEditScreen = ({ match, history }) => {
       updateItem({
         _id: itemId,
         name,
-        level,
-        school,
+        type,
+        typeAdditions,
         source,
-        timeCast,
-        distance,
-        components,
-        duration,
-        description,
+        rarity,
+        text,
+        attunement,
       })
     )
   }
@@ -80,7 +74,7 @@ const ItemEditScreen = ({ match, history }) => {
         Назад
       </Link>
       <FormContainer>
-        <h1>Редактор заклинания</h1>
+        <h1>Редактор предмета</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (
@@ -93,29 +87,9 @@ const ItemEditScreen = ({ match, history }) => {
               <Form.Label>Название</Form.Label>
               <Form.Control
                 type='name'
-                placeholder='Введите название заклинания'
+                placeholder='Введите название предмета'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='school'>
-              <Form.Label>Уровень заклинания</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Введите уровень заклинания'
-                value={level}
-                onChange={(e) => setLevel(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='school'>
-              <Form.Label>Школа заклинания</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Введите школу заклинания'
-                value={school}
-                onChange={(e) => setSchool(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -129,59 +103,55 @@ const ItemEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='timeCast'>
-              <Form.Label>Время накладывания</Form.Label>
+            <Form.Group controlId='type'>
+              <Form.Label>Тип</Form.Label>
               <Form.Control
                 type='text'
-                placeholder='Введите время накладывания'
-                value={timeCast}
-                onChange={(e) => setTimeCast(e.target.value)}
+                placeholder='Введите тип'
+                value={type}
+                onChange={(e) => setType(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='distance'>
-              <Form.Label>Дистанция</Form.Label>
+            <Form.Group controlId='typeAdditions'>
+              <Form.Label>Тип боеприпасов</Form.Label>
               <Form.Control
                 type='text'
-                placeholder='Введите дистанцию действия'
-                value={distance}
-                onChange={(e) => setDistance(e.target.value)}
+                placeholder='Введите тип боеприпасов'
+                value={typeAdditions}
+                onChange={(e) => setTypeAdditions(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='components'>
-              <Form.Label>Компоненты</Form.Label>
-              <div className='editor'>
-                <CKEditor
-                  editor={ClassicEditor}
-                  data={components}
-                  onChange={(event, editor) => {
-                    const data = editor.getData()
-                    setComponents(data)
-                  }}
-                ></CKEditor>
-              </div>
-            </Form.Group>
-
-            <Form.Group controlId='duration'>
-              <Form.Label>Время действия</Form.Label>
+            <Form.Group controlId='rarity'>
+              <Form.Label>Редкость</Form.Label>
               <Form.Control
                 type='text'
-                placeholder='Введите время действия'
-                value={duration}
-                onChange={(e) => setDuration(e.target.value)}
+                placeholder='Введите редкость'
+                value={rarity}
+                onChange={(e) => setRarity(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='description'>
+            <Form.Group controlId='attunement'>
+              <Form.Label>Настройка</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Укажите настройку предмета'
+                value={attunement}
+                onChange={(e) => setAttunement(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='text'>
               <Form.Label>Описание</Form.Label>
               <div className='editor'>
                 <CKEditor
                   editor={ClassicEditor}
-                  data={description}
+                  data={text}
                   onChange={(event, editor) => {
                     const data = editor.getData()
-                    setDescription(data)
+                    setText(data)
                   }}
                 ></CKEditor>
               </div>

@@ -1,12 +1,15 @@
 import dotenv from "dotenv"
+
 import creatures from "./data/creatures.js"
 import users from "./data/users.js"
 import spells from "./data/spells.js"
 import items from "./data/items.js"
+
 import Creature from "./models/creatureModel.js"
 import User from "./models/userModel.js"
 import Spell from "./models/spellModel.js"
 import Item from "./models/itemModel.js"
+
 import connectDB from "./config/db.js"
 
 dotenv.config()

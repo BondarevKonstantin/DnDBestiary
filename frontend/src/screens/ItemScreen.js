@@ -51,14 +51,14 @@ const ItemScreen = ({ history, match }) => {
                   size='lg'
                   onClick={setItemHandler}
                 >
-                  Редактировать заклинание
+                  Редактировать предмет
                 </Button>
                 <Button
                   variant='outline-danger'
                   size='lg'
                   onClick={() => removeItemHandler(item._id)}
                 >
-                  Удалить заклинание
+                  Удалить предмет
                 </Button>
               </ButtonGroup>
             ) : (
@@ -72,45 +72,38 @@ const ItemScreen = ({ history, match }) => {
           </Card.Text>
 
           <Card.Text>
-            <strong>Уровень: </strong>
-            {item.level}
+            <strong>Тип: </strong>
+            {item.type}
           </Card.Text>
 
-          <Card.Text>
-            <strong>Школа: </strong>
-            {item.school}
-          </Card.Text>
-
-          <Card.Text>
-            <strong>Время накладывания: </strong>
-            {item.timeCast}
-          </Card.Text>
-
-          <Card.Text>
-            <strong>Дистанция: </strong>
-            {item.distance}
-          </Card.Text>
-
-          {item.components ? (
-            <>
-              <strong>Компоненты: </strong>
-              {parse(item.components)}
-            </>
+          {item.typeAdditions ? (
+            <Card.Text>
+              <strong>Тип боеприпасов: </strong>
+              {parse(item.typeAdditions)}
+            </Card.Text>
           ) : (
             ""
           )}
 
           <Card.Text>
-            <br></br>
-            <strong>Длительность: </strong>
-            {item.duration}
+            <strong>Редкость: </strong>
+            {item.rarity}
           </Card.Text>
 
-          {item.description ? (
-            <>
-              <h1 className='my-4 text-center'>---Описание---</h1>
-              {parse(item.description)}{" "}
-            </>
+          {item.attunement ? (
+            <Card.Text>
+              <strong>Настройка: </strong>
+              {parse(item.attunement)}
+            </Card.Text>
+          ) : (
+            ""
+          )}
+
+          {item.text ? (
+            <Card.Text>
+              <strong>Описание: </strong>
+              {parse(item.text)}
+            </Card.Text>
           ) : (
             ""
           )}

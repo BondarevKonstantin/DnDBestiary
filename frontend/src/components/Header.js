@@ -27,13 +27,13 @@ const Header = () => {
             <Nav className='ml-auto'>
               <LinkContainer to='/creatures'>
                 <Nav.Link>
-                  <i className='fas fa-address-card'></i> Существа
+                  <i className='fas fa-dragon'></i> Существа
                 </Nav.Link>
               </LinkContainer>
 
               <LinkContainer to='/spells'>
                 <Nav.Link>
-                  <i className='fas fa-book'></i> Заклинания
+                  <i className='fas fa-scroll'></i> Заклинания
                 </Nav.Link>
               </LinkContainer>
 
@@ -45,7 +45,7 @@ const Header = () => {
 
               <LinkContainer to='/kodex'>
                 <Nav.Link disabled>
-                  <i className='fas fa-book'></i> Кодекс
+                  <i className='fas fa-book'></i> ???
                 </Nav.Link>
               </LinkContainer>
 

@@ -123,14 +123,20 @@ const ItemEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='rarity'>
+            <Form.Group controlId='exampleForm.ControlSelect1'>
               <Form.Label>Редкость</Form.Label>
               <Form.Control
-                type='text'
-                placeholder='Введите редкость'
+                as='select'
                 value={rarity}
                 onChange={(e) => setRarity(e.target.value)}
-              ></Form.Control>
+              >
+                <option>Обычный</option>
+                <option>Необычный</option>
+                <option>Редкий</option>
+                <option>Очень редкий</option>
+                <option>Легендарный</option>
+                <option>Артефакт</option>
+              </Form.Control>
             </Form.Group>
 
             <Form.Group controlId='attunement'>
